@@ -120,8 +120,52 @@
 	partial derivative are continuous in time and space (both) in the open
 	neighborhood of $\{x\} \times [a,b]$ for any continuous and differentiable
 	functions a, b. Text assumes all partials continuous, and by extent
-	differentiable (converse not necessarily true).
+	differentiable (converse not necessarily true). Second order partials assumed continuous for Clairaut's Theorem, $C^2$, throughout text.
 	\begin{flalign*}
-		\frac{\partial \Psi^* \frac{\partial \Psi}{\partial x}}{\partial t} =
+		\frac{\partial \Psi^* \frac{\partial \Psi}{\partial x}}{\partial t}\\
+		&=\pdv{\Psi^*}{t}\pdv{\Psi}{x}+\Psi^* \pdv{\Psi}{x,t}\\
+		&=\Bigl(\frac{-i\hbar}{2m}\pdv[2]{\Psi^*}{x}+\frac{iV(x,t)\Psi^*}{\hbar}\Bigr)\pdv{\Psi}{x}+\Psi^*\pdv*{\frac{i \hbar}{2m}\pdv[2]{\Psi}{x}-\frac{iV(x,t)\Psi}{\hbar}}{x}\\
+		&= \frac{i \hbar}{2m}\Bigl(\pdv[3]{\Psi}{x}\Psi^*-\pdv[2]{\Psi^*}{x}\pdv{\Psi}{x} \Bigr) + \frac{i}{\hbar} \Bigl(V(x,t)\pdv{\Psi}{x}-\Psi^*\pdv{V(x,t)\Psi}{x}\Bigr)\\
+		&= \frac{i \hbar}{2m}\Bigl(\pdv[3]{\Psi}{x}\Psi^*-\pdv[2]{\Psi^*}{x}\pdv{\Psi}{x} \Bigr) + \frac{i}{\hbar} \Bigl(V(x,t)\pdv{\Psi}{x}-\Psi^* V(x,t)\pdv{\Psi}{x}- \Psi^* \pdv{V(x,t)}{x}\Psi\Bigr)\\
+		&= \frac{i}{\hbar} \Bigl(|\Psi|^2 \pdv{V(x,t)}{x}\Bigr)\\
 	\end{flalign*}
+	Whereby we used IBP twice to drop the first term. Accordingly,
+	\begin{flalign*}
+		\pdv{\langle p \rangle}{t} = -i\hbar \frac{i}{\hbar} \int_{\mathbb{R}} -|\Psi|^2\pdv{V}{x} ~dx = \langle -\pdv{V}{x} \rangle
+	\end{flalign*}
+	Thus, the time derivative of the expectation value of velocity by mass is equal to the position derivative of the expectation value of potential V.
+}\\
+
+\exercise{1.8MOD}{
+	Suppose we add a constant $V_0$ to the potential energy. In classical mechanics, this won't change a thing, but what about in quantum mechanics? 
+	Show that the function picks up a time-dependent phase factor. What effect does this have on the expectation value of a dynamic variable?
+	\\ \\
+	\begin{flalign*}
+		\pdv{\Psi}{t} = \frac{i\hbar}{2m}\pdv[2]{\Psi}{x}-\frac{i}{\hbar}V(x,t)\Psi(x,t)
+	\end{flalign*}
+	Set $\zeta(x,t)$ to the wave function holding potential energy $V(x,t)+V_0$ and rewrite to notice a familiar separable PDE,
+	\begin{flalign*}
+		\pdv{\zeta}{t} &= \frac{i \hbar}{2m}\pdv[2]{\zeta}{x}-\frac{i}{\hbar}\Bigl(V(x,t)+V_0\Bigr)\zeta\\
+		&\implies \frac{i \hbar}{2m}\pdv[2]{\zeta}{x} - \frac{i V \zeta}{\hbar} = \pdv{\zeta}{t}+\frac{iV_0 \zeta}{\hbar}\\
+	\end{flalign*}
+	We consider the following boundary conditions: $\zeta\left(\infty, t\right) = \zeta \left( -\infty, t \right) =0$. We then proceed with letting $\zeta = X(x)T(t)$.
+	\begin{flalign*}
+		\zeta \left(x,t\right) &= X \left(x\right)T\left(t\right)\\
+		\zeta\left(\infty,t\right)&=X\left(\infty \right)T\left(t\right)  ~~\forall t \implies X(\infty)=0\\
+		\zeta\left(-\infty,t\right)&=X\left(-\infty \right)T\left(t\right)  ~~\forall t \implies X(-\infty)=0\\
+		\frac{i \hbar}{2m}\pdv[2]{XT}{x}-\frac{iV XT}{\hbar} &= \pdv{XT}{t}+\frac{iV_0 XT}{\hbar}\\
+		\frac{i \hbar}{2m} X''T-\frac{iV XT}{\hbar} &= XT'+\frac{iV_0 XT}{\hbar}\\
+		-\frac{\hbar^2}{2m}\frac{X''}{X} +V &= \frac{T'}{T}i \hbar -V_0\\
+		c\frac{X''}{X} &= \frac{T'}{T}i \hbar = -V+V_0 = -\lambda\\
+	\end{flalign*}
+	For some arbitrary constant $\lambda$. We now decompose into two ODEs, but first note he author saves us 
+	here by hinting that $e^{-\frac{iV_0}{\hbar}}$ is a time-dependent phase factor we should expect to see in a solution.
+	The implied boundary conditions would only give trivial solutions to the spatial eigenfunctions.
+	\begin{flalign*}
+		i\hbar\derivative{T}{t} &= -\lambda T \implies \zeta(x,t) = e^{-\frac{i(\lambda)}{\hbar}+C} = \zeta_0 e^{-\frac{i(-V_0+V)}{\hbar}} \\
+	\end{flalign*}
+	The author saves us here by the hint that $e^{-\frac{iV_0}{\hbar}}$ is a time-dependent phase factor we should expect to see in a solution.
+	The implied boundary conditions would only give trivial solutions to the spatial eigenfunctions. Thus, when plugging this back in to the wave equation
+	we note the implication: $\Psi(x,t) = \zeta(x,t)e^{-\frac{i(V_0)}{\hbar}}$. If we substitute into equation 1.36, then we see that it remains unchanged. 
+	We conclude that this has no effect on the expectation value of a dynamical variable, since the extra phase factor cancels out and is independent of position.
 }
