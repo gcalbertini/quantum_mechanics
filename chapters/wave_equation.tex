@@ -151,21 +151,24 @@
 	We consider the following boundary conditions: $\zeta\left(\infty, t\right) = \zeta \left( -\infty, t \right) =0$. We then proceed with letting $\zeta = X(x)T(t)$.
 	\begin{flalign*}
 		\zeta \left(x,t\right) &= X \left(x\right)T\left(t\right)\\
-		\zeta\left(\infty,t\right)&=X\left(\infty \right)T\left(t\right)  ~~\forall t \implies X(\infty)=0\\
-		\zeta\left(-\infty,t\right)&=X\left(-\infty \right)T\left(t\right)  ~~\forall t \implies X(-\infty)=0\\
+		\zeta\left(\infty,t\right)&=X\left(\infty \right)T\left(t\right)  ~~\forall t \implies c_1 = X(\infty)=0\\
+		\zeta\left(-\infty,t\right)&=X\left(-\infty \right)T\left(t\right)  ~~\forall t \implies c_2 = X(-\infty)=0\\
 		\frac{i \hbar}{2m}\pdv[2]{XT}{x}-\frac{iV XT}{\hbar} &= \pdv{XT}{t}+\frac{iV_0 XT}{\hbar}\\
 		\frac{i \hbar}{2m} X''T-\frac{iV XT}{\hbar} &= XT'+\frac{iV_0 XT}{\hbar}\\
 		-\frac{\hbar^2}{2m}\frac{X''}{X} +V &= \frac{T'}{T}i \hbar -V_0\\
-		c\frac{X''}{X} &= \frac{T'}{T}i \hbar = -V+V_0 = -\lambda\\
+		k\frac{X''}{X} &= \frac{T'}{T}i \hbar - V_0+V\\
+		\frac{1}{k}(\frac{T'}{T}i \hbar-V_0+V) &= -\lambda\\
+		-T(k \lambda -V_0 + V) &= T' i\hbar\\
+		X'' &= -X\lambda \\
 	\end{flalign*}
-	For some arbitrary constant $\lambda$. We now decompose into two ODEs, but first note he author saves us 
+	For some arbitrary constant $\lambda$ and k We now decompose into two ODEs, but first note he author saves us 
 	here by hinting that $e^{-\frac{iV_0}{\hbar}}$ is a time-dependent phase factor we should expect to see in a solution.
 	The implied boundary conditions would only give trivial solutions to the spatial eigenfunctions.
 	\begin{flalign*}
-		i\hbar\derivative{T}{t} &= -\lambda T \implies \zeta(x,t) = e^{-\frac{i(\lambda)}{\hbar}+C} = \zeta_0 e^{-\frac{i(-V_0+V)}{\hbar}} \\
+		\zeta(x,t) = e^{\frac{i(k\lambda+V-V_0)}{\hbar}+C} = \zeta_0 e^{\frac{iV}{\hbar}} \\
 	\end{flalign*}
 	The author saves us here by the hint that $e^{-\frac{iV_0}{\hbar}}$ is a time-dependent phase factor we should expect to see in a solution.
 	The implied boundary conditions would only give trivial solutions to the spatial eigenfunctions. Thus, when plugging this back in to the wave equation
-	we note the implication: $\Psi(x,t) = \zeta(x,t)e^{-\frac{i(V_0)}{\hbar}}$. If we substitute into equation 1.36, then we see that it remains unchanged. 
+	we note the implication: $\Psi(x,t) = \zeta(x,t)e^{-\frac{i V_0}{\hbar}}$. If we substitute into equation 1.36, then we see that it remains unchanged. 
 	We conclude that this has no effect on the expectation value of a dynamical variable, since the extra phase factor cancels out and is independent of position.
 }
