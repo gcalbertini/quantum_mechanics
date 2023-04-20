@@ -74,13 +74,13 @@
 				\langle x^n \rangle &= \int_\mathbb{R}  x^n \lambda e^{-2 \lambda |x|} ~dx\\
 				&= \lambda \left(  \int_{-\infty}^0 x^n e^{2 \lambda x} + \int_{0}^\infty x^n e^{-2 \lambda x}\right) ~dx
 			\end{flalign*}
-			Now note the following is smells like the gamma function,
+			Now note the following is smells like the gamma function, and make substitution of $u = -x$ to change limits (also note that n is positive to extract the alternating negative one):
 			\begin{flalign*}
-				I_{n_1} = \int_{-\infty}^0 x^n e^{2 \lambda x} ~dx = -\int_0^{-\infty} x^n e^{2 \lambda x} ~dx
+				I_{n_1} = \int_{-\infty}^0 x^n e^{2 \lambda x} ~dx = \int_{\infty}^0 (-u)^n e^{2\lambda (-u)}~(-du) = -\int_{\infty}^0 (-1)^n u^n e^{-2 \lambda u} ~du  = (-1)^n \int_{0}^{\infty} x^n e^{-2 \lambda x} ~dx
 			\end{flalign*}
-			By using substitution of the type $u = -2 \lambda x$ we get,
+			By using substitution of the type $u = 2 \lambda x$ we get,
 			\begin{flalign*}
-				I_{n_1} = \frac{-1}{2\lambda (-2\lambda)^n} \int_0^\infty e^{-u}u^n du = \frac{(-1)^n}{(2\lambda)^{n+1}} \Gamma(n+1), ~\Re(n) > -1
+				I_{n_1} = \frac{(-1)^n}{2\lambda (2\lambda)^n} \int_0^\infty e^{-u}u^n du = \frac{(-1)^n}{(2\lambda)^{n+1}} \Gamma(n+1), ~\Re(n) > -1
 			\end{flalign*}
 			where the last equation can be used to show the required base case of $I_0=\frac{1}{2\lambda}$. A similar analysis for the second integrand gives us the combined relation
 			\begin{flalign*}
@@ -136,7 +136,7 @@
 	Thus, the time derivative of the expectation value of velocity by mass is equal to the position derivative of the expectation value of potential V.
 }\\
 
-\exercise{1.8MOD}{
+\exercise{1.8}{
 	Suppose we add a constant $V_0$ to the potential energy. In classical mechanics, this won't change a thing, but what about in quantum mechanics? 
 	Show that the function picks up a time-dependent phase factor. What effect does this have on the expectation value of a dynamic variable?
 	\\ \\
@@ -148,26 +148,93 @@
 		\pdv{\zeta}{t} &= \frac{i \hbar}{2m}\pdv[2]{\zeta}{x}-\frac{i}{\hbar}\Bigl(V(x,t)+V_0\Bigr)\zeta\\
 		&\implies \frac{i \hbar}{2m}\pdv[2]{\zeta}{x} - \frac{i V \zeta}{\hbar} = \pdv{\zeta}{t}+\frac{iV_0 \zeta}{\hbar}\\
 	\end{flalign*}
-	We consider the following boundary conditions: $\zeta\left(\infty, t\right) = \zeta \left( -\infty, t \right) =0$. We then proceed with letting $\zeta = X(x)T(t)$.
+	We consider the following boundary conditions (BC): $\zeta\left(\infty, t\right) = \zeta \left( -\infty, t \right) =0$. We then proceed with letting $\zeta = X(x)T(t)$. Also, for this course, we are dealing mostly with the time-independent wave equation, such that the potential well is independent of time, $V(x,t)=V(x)$.
 	\begin{flalign*}
 		\zeta \left(x,t\right) &= X \left(x\right)T\left(t\right)\\
 		\zeta\left(\infty,t\right)&=X\left(\infty \right)T\left(t\right)  ~~\forall t \implies c_1 = X(\infty)=0\\
 		\zeta\left(-\infty,t\right)&=X\left(-\infty \right)T\left(t\right)  ~~\forall t \implies c_2 = X(-\infty)=0\\
-		\frac{i \hbar}{2m}\pdv[2]{XT}{x}-\frac{iV XT}{\hbar} &= \pdv{XT}{t}+\frac{iV_0 XT}{\hbar}\\
-		\frac{i \hbar}{2m} X''T-\frac{iV XT}{\hbar} &= XT'+\frac{iV_0 XT}{\hbar}\\
-		-\frac{\hbar^2}{2m}\frac{X''}{X} +V &= \frac{T'}{T}i \hbar -V_0\\
-		k\frac{X''}{X} &= \frac{T'}{T}i \hbar - V_0+V\\
-		\frac{1}{k}(\frac{T'}{T}i \hbar-V_0+V) &= -\lambda\\
-		-T(k \lambda -V_0 + V) &= T' i\hbar\\
-		X'' &= -X\lambda \\
+		\frac{i \hbar}{2m}\pdv[2]{XT}{x}-\frac{iV(x) XT}{\hbar} &= \pdv{XT}{t}+\frac{iV_0 XT}{\hbar}\\
+		\frac{i \hbar}{2m} X''T-\frac{iV(x) XT}{\hbar} &= XT'+\frac{iV_0 XT}{\hbar}\\
+		-\frac{\hbar^2}{2m}\frac{X''}{X} +V(x) &= \frac{T'}{T}i \hbar -V_0\\
+		k\frac{X''}{X}+V(x) &= \frac{T'}{T}i \hbar - V_0 = E \text{, up to constant E, now decompose to ODEs}\\
+		kX'' &= X(E-V(x)) \text{, stop here as we need potential energy specified, else BC gives trivial solutions} \\
+		\frac{T'}{T} &= -i\frac{E+V_0}{\hbar}\\
 	\end{flalign*}
-	For some arbitrary constant $\lambda$ and k. We now decompose into two ODEs, but first note he author saves us 
-	here by hinting that $e^{-\frac{iV_0}{\hbar}t}$ is a time-dependent phase factor we should expect to see in a solution.
-	The implied boundary conditions would only give trivial solutions to the spatial eigenfunctions. For arbitrary constant C,
+	For arbitrary constant C (and thus also $\zeta_0$),
 	\begin{flalign*}
-		\zeta(x,t) = e^{\frac{i(k\lambda+V-V_0)}{\hbar}t+C} = \zeta_0 e^{\frac{i(V-V_0)}{\hbar}t} \\
+		\zeta(x,t) = e^{-\frac{i(E+V_0)t}{\hbar}+C} = \zeta_0 e^{-\frac{i(V_0+E)}{\hbar}t} \\
 	\end{flalign*}
-	Thus, when plugging this back in to the wave equation
+	Thus, when plugging this back in to the wave equation (and seeings results from the next chapter!)
 	we note the implication: $\Psi(x,t) = \zeta(x,t)e^{\frac{i V_0}{\hbar}t}$. If we substitute into Equation 1.36, then we see that it remains unchanged. 
-	We conclude that this has no effect on the expectation value of a dynamical variable, since the extra phase factor cancels out and is independent of position.
+	We conclude that this has no effect on the expectation value of a dynamical variable, since the extra phase factor cancels out and is independent of position.\\
 }
+
+\exercise{1.9MOD}{
+	A particle of mass $m$ has the wave function (for positive constants A, a) of $$\Psi(x,t) = Ae^{-a\frac{mx^2}{\hbar}-ait}$$
+	\begin{itemize}
+		\item Normalize to find A. Watch video on Gaussian integral if stuck on how to derive it.
+			\begin{flalign*}
+				\int_\mathbb{R} |\Psi(x,t)|^2 ~dx &= \int_\mathbb{R} \Psi^* \Psi ~dx =1\\
+				&= A^2 \int_\mathbb{R} e^{-\frac{2amx^2}{\hbar}} ~dx\\
+				&= A^2 \sqrt{\frac{\pi \hbar }{2am}} \implies A = \sqrt[4]{\frac{2am}{\pi \hbar}}\\
+				\Psi(x,t) &= \sqrt[4]{\frac{2am}{\pi \hbar}} e^{-a\frac{mx^2}{\hbar}-ait}
+			\end{flalign*}
+		\item For which potential energy function, $V(x)$, is this a solution to Schro's wave equation?
+		 	\begin{flalign*}\
+				\pdv{\Psi}{t} &= -ia\Psi\\
+				\pdv{\Psi}{x} &= -\frac{2amx}{\hbar}\Psi\\
+				\pdv[2]{\Psi}{x} &= \frac{-2am}{\hbar}\Bigl(\Psi + x\pdv{\Psi}{x}\Bigr)\\
+				&= \frac{-2am}{\hbar} \Bigl( 1 -\frac{ 2amx^2}{\hbar}\Bigr)\\
+				i\hbar\pdv{\Psi}{t} &= -\frac{\hbar^2}{2m}\pdv[2]{\Psi}{x}+V(x)\Psi\\
+				V(x) &= i\hbar(-ia\Psi)+\frac{\hbar^2}{2m}\Bigl(1-\frac{2amx^2}{\hbar}\Bigr) \Bigl( \frac{-2am}{\hbar}\Bigr)\Psi\\
+				& = 2a^2mx^2 \\
+		 	\end{flalign*} 
+		\item Find the $n^{th}$ moment.\\ \\
+			Recall details in problem 1.5 and note $n$ is a positive constant. Here, we split up the integral as was performed then, for negative infinity to 0 then 0 to positive infinity. This simplifies calculation. We set $C = \frac{2am}{\hbar}$ and use $A$ for constant above.
+			\begin{flalign*}
+				\int_\mathbb{R} x^n|\Psi(x,t)|^2 ~dx &= \int_\mathbb{R} \Psi^* [x^n]\Psi ~dx\\
+				& = A^2 \int_\mathbb{R} x^n e^{-Cx^2} ~dx\\
+				I_{left} &= \int_{-\infty}^0 x^n e^{-Cx^2} ~dx = (-1)^n\int_0^{\infty} (x^n)e^{-Cx^2}~dx\\
+			\end{flalign*}
+			From here, you may use substitution of $u = x^2$, then $z = Cu$, to arrive at:
+			\begin{flalign*}
+				\frac{(-1)^n}{2C^{\frac{n+1}{2}}}\int_{0}^{\infty} e^{-z} z^{\frac{n-1}{2}} ~dz = \frac{(-1)^n}{2C^{\frac{n+1}{2}}}\Gamma \Bigl( \frac{n+1}{2}\Bigr) \\
+			\end{flalign*}
+			A similar analysis for the positive side results in a similar answer. Combining for the intended integral and substitute back into our original expression:
+			\begin{flalign*}
+				\langle x^n \rangle &= \frac{A^2((-1)^n+1)}{2C^{\frac{n+1}{2}}}\Gamma \Bigl( \frac{n+1}{2}\Bigr)\\
+				\langle x \rangle &= 0\\
+				\langle x^2 \rangle &= \frac{1}{2}(2)\sqrt[2]{\frac{2am}{\pi \hbar}} \Biggl(\frac{2am}{\hbar} \Biggr)^{-3/2} \cancelto{\frac{\sqrt{\pi}}{2}}{\Gamma \Bigl( \frac{3}{2} \Bigr)}\\
+				&= \frac{\hbar}{4am}
+			\end{flalign*}
+		\item Find the expression for the $p^{th}$ momentum. Note it gives non-trivial position partials for the first five degrees. 
+		 \begin{flalign*}
+			\langle p^n \rangle = \int_\mathbb{R} \Psi^* \Bigl(\frac{\hbar}{i}\pdv{}{x}\Bigr)^n \Psi ~dx &= \Bigl(\frac{\hbar}{i}\Bigr)^n \int_\mathbb{R} \Psi^* \pdv[n]{\Psi}{x}\\
+			\langle p \rangle &= 0\\
+			\langle p^2 \rangle &= am \hbar
+		 \end{flalign*}
+		\item Find $\sigma_x$ and $\sigma_p$. Is their product consistent withe the uncertainty principle?
+		 \begin{flalign*}
+			\sigma_x = \sqrt{\langle x^2 \rangle - \langle x \rangle } = \frac{\hbar}{4am}\\
+			\sigma_p = \sqrt{\langle p^2 \rangle - \langle p \rangle } = \sqrt{am\hbar}\\
+			\sigma_p\sigma_x = \frac{\hbar}{2} \geq \frac{\hbar}{2}
+		 \end{flalign*}
+		 This implies we have a wave function that barely satisifes the uncertainty principle.
+	\end{itemize}
+
+}
+\exercise{1.11}{
+	Imagine a mass particle $m$ and energy $E$ in a potential well $V(x)$ sliding back and forth on a frictionless surface between $a$ and $b$ given in Figure 1.10.
+	Classically, the peobability of finding particle in range $dx$ is equal to the fraction of time $T$ it takes to get from $a$ to $b$ that it spends on the interval $dx$, and for speed $v(x)$:
+	\begin{flalign*}
+		\rho(x)dx = \frac{dt}{T} &= \frac{\derivative{t}{x}	dx}{T} = \frac{1}{v(x)T}dx\\
+		T &= \int_0^T dt = \int_a^b \frac{1}{v(x)}dx\\
+		\implies \rho(x) = \frac{1}{v(x)T}
+	\end{flalign*}
+		\begin{itemize}
+			\item Use conservation of energy to express speeds in terms of potential well and energy.
+			\item Find the density for simple harmonic oscillator, $V(x)=\frac{kx^2}{2}$. Check normalization.
+			\item Find the first and second expected value of position. Find $\sigma_x$.
+		\end{itemize}
+}
+
