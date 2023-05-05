@@ -122,8 +122,9 @@
 	functions a, b. Text assumes all partials continuous, and by extent
 	differentiable (converse not necessarily true). Second order partials assumed continuous for Clairaut's Theorem, $C^2$, throughout text.
 	\begin{flalign*}
+		\frac{d\langle p \rangle}{dt} &= -i\hbar \int \pdv{\Psi^* \pderivative{\Psi}{x}}{t}~dx\\
 		\frac{\partial \Psi^* \frac{\partial \Psi}{\partial x}}{\partial t}\\
-		&=\pdv{\Psi^*}{t}\pdv{\Psi}{x}+\Psi^* \pdv{\Psi}{x,t}\\
+		&=\pdv{\Psi^*}{t}\pdv{\Psi}{x}+\Psi^* \pdv[2]{\Psi}{x}{t}\\
 		&=\Bigl(\frac{-i\hbar}{2m}\pdv[2]{\Psi^*}{x}+\frac{iV(x,t)\Psi^*}{\hbar}\Bigr)\pdv{\Psi}{x}+\Psi^*\pdv*{\frac{i \hbar}{2m}\pdv[2]{\Psi}{x}-\frac{iV(x,t)\Psi}{\hbar}}{x}\\
 		&= \frac{i \hbar}{2m}\Bigl(\pdv[3]{\Psi}{x}\Psi^*-\pdv[2]{\Psi^*}{x}\pdv{\Psi}{x} \Bigr) + \frac{i}{\hbar} \Bigl(V(x,t)\pdv{\Psi}{x}-\Psi^*\pdv{V(x,t)\Psi}{x}\Bigr)\\
 		&= \frac{i \hbar}{2m}\Bigl(\pdv[3]{\Psi}{x}\Psi^*-\pdv[2]{\Psi^*}{x}\pdv{\Psi}{x} \Bigr) + \frac{i}{\hbar} \Bigl(V(x,t)\pdv{\Psi}{x}-\Psi^* V(x,t)\pdv{\Psi}{x}- \Psi^* \pdv{V(x,t)}{x}\Psi\Bigr)\\
@@ -133,7 +134,7 @@
 	\begin{flalign*}
 		\pdv{\langle p \rangle}{t} = -i\hbar \frac{i}{\hbar} \int_{\mathbb{R}} -|\Psi|^2\pdv{V}{x} ~dx = \langle -\pdv{V}{x} \rangle
 	\end{flalign*}
-	Thus, the time derivative of the expectation value of velocity by mass is equal to the position derivative of the expectation value of potential V.
+	Thus, the time derivative of the expectation value of momentum is equal to the position derivative of the expectation value of potential well V.
 }\\
 
 \exercise{1.8}{
@@ -328,3 +329,28 @@
 }
 
 \exercise{1.13}{\includegraphics[width=\textwidth]{./chapters/graphs_ch1/1_13_1.png} Experimental results agree with analytical expression.}
+\\ \\
+\exercise{1.14}{
+	Let $P_{ab}(t)$ be the probability of finding the particle in the range $(a < x < b)$, at time t. 
+	\begin{itemize}
+		\item Show that $$\derivative{P_{ab}}{t} = J(a,t) - J(b,t)$$ where $$J(x,t) \equiv \frac{i \hbar}{2m} \Biggl(\Psi \pdv{\Psi^*}{x}-\Psi^*\pdv{\Psi}{x}\Biggr) $$ What are the units of $J(x,t)$? Comment: $J$ is called the probability current, because it tells you the rate at which probability is ``flowing'' past point $x$. If $P_{ab}(t)$ is increasing,
+		 then the more probability is flowing into the region at one end than flows out the other.
+		 \begin{flalign*}
+			\derivative{P_{ab}}{t} &= \derivative{}{t}\int_a^b |\Psi^2|~dx = \int_a^b \pdv{\Psi^*\Psi}{t}~dx\\
+			&= \int_a^b \pdv{\Psi}{t}\Psi^*+\Psi\pdv{\Psi^*}{t}~dx\\
+			&= \frac{i \hbar}{2m}\Psi^*\pdv[2]{\Psi}{x}-\frac{i\hbar}{2m}\pdv[2]{\Psi^*}{x}~dx\\
+			&= \frac{i\hbar}{2m}\int_a^b \pdv{\Psi^*}{x}\pdv{\Psi}{x}+\Psi^*\pdv[2]{\Psi}{x}-\pdv[2]{\Psi^*}{x}\Psi-\pdv{\Psi}{x}\pdv{\Psi^*}{x}~dx\\
+			&= \frac{i\hbar}{2m}\int_a^b \pdv{\Bigl(\Psi^*\pdv{\Psi}{x}-\Psi^*\pdv{\Psi}{x}\Bigr)}{x}~dx\\
+			&= \frac{i\hbar}{2m} \biggl( \Psi^*\pdv{\Psi}{b}-\Psi\pdv{\Psi^*}{b}\biggr)-\frac{i\hbar}{2m} \biggl( \Psi^*\pdv{\Psi}{a}-\Psi\pdv{\Psi^*}{a}\biggr)\\
+			&=J(b,t)-J(a,t)
+		 \end{flalign*}
+		 Probabilities don't have a dimension, so then $J$ must have units of 1/time, or $s^{-1}$, since this is a change in probability per change in time. 
+		 \item Find the probability current for the wave function to 1.9. 
+		 \begin{flalign*}
+			\Psi(x,t) &= \sqrt[4]{\frac{2am}{\pi \hbar}} e^{-a\frac{mx^2}{\hbar}-ait} = f(x)e^{-ait}\\
+			\Psi\pdv{\Psi^*}{x} &= f(x)e^{-ait}\pdv{f(x)}{x}e^{ait} = f(x)\pdv{f(x)}{x} = \Psi^*\pdv{\Psi}{x}\\
+			\therefore J(x,t) &= 0\\
+		 \end{flalign*}
+	\end{itemize}
+	Thus, we see a net zero probability flow in and out of this region: the probability of finding particle at position $x$ is a constant over this region should we have probability current of 0.
+}
