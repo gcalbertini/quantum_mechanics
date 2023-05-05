@@ -213,7 +213,7 @@
 			\langle p \rangle &= 0\\
 			\langle p^2 \rangle &= am \hbar
 		 \end{flalign*}
-		\item Find $\sigma_x$ and $\sigma_p$. Is their product consistent withe the uncertainty principle?
+		\item Find $\sigma_x$ and $\sigma_p$. Is their product consistent with the uncertainty principle?
 		 \begin{flalign*}
 			\sigma_x = \sqrt{\langle x^2 \rangle - \langle x \rangle } = \frac{\hbar}{4am}\\
 			\sigma_p = \sqrt{\langle p^2 \rangle - \langle p \rangle } = \sqrt{am\hbar}\\
@@ -239,9 +239,9 @@
 			\item Find the probability density for simple harmonic oscillator, $V(x)=\frac{kx^2}{2}$. Check normalization.
 				\begin{flalign*}
 					v(x) &= \pm \sqrt{\frac{2(E-V(x))}{m}} = \pm \sqrt{\frac{2E-kx^2}{m}}\\
-					\rho(x) &= \frac{1}{\pm \sqrt{\frac{2E-kx^2}{m}} \int_{-A}^{A} \frac{1}{ \sqrt{\frac{2E-kx^2}{m}}} ~dx}\\
-					&= \frac{1}{\pm \sqrt{\frac{2E-kx^2}{m}}\sqrt{\frac{m}{2E}}\int_{-A}^{A}\frac{1}{\sqrt{1-\frac{kx^2}{2E}}}~dx}\\
-					&= \frac{1}{\pm 2\sqrt{1-\frac{kx^2}{2E}}\int_{0}^{A}\frac{1}{\sqrt{1-\frac{kx^2}{2E}}}~dx}\\
+					\rho(x) &= \frac{1}{ \sqrt{\frac{2E-kx^2}{m}} \int_{-A}^{A} \frac{1}{ \sqrt{\frac{2E-kx^2}{m}}} ~dx}\\
+					&= \frac{1}{ \sqrt{\frac{2E-kx^2}{m}}\sqrt{\frac{m}{2E}}\int_{-A}^{A}\frac{1}{\sqrt{1-\frac{kx^2}{2E}}}~dx}\\
+					&= \frac{1}{ 2\sqrt{1-\frac{kx^2}{2E}}\int_{0}^{A}\frac{1}{\sqrt{1-\frac{kx^2}{2E}}}~dx}\\
 				\end{flalign*}
 				Now apply a trig substitution to simplify computation; see Paul's online math notes.
 				\begin{flalign*}
@@ -249,7 +249,7 @@
 					\cos^2 \theta &= 1 - \sin^2 \theta = 1 - \frac{k}{2E}x^2 \implies \cos \theta = \sqrt{1-\frac{kx^2}{2E}}\\
 					dx &= \sqrt{\frac{2E}{k}}\cos \theta d\theta \\
 				\end{flalign*}
-				Where we note that for a SHM, the turning points are at the amplitudes $\pm A$ of the oscillation and apply the familiar trigonometric substitution. We drop $\pm$ to focus on the magnitude of $dx$. 
+				Where we note that for a SHO, the turning points are at the amplitudes $\pm A$ of the oscillation and apply the familiar trigonometric substitution. We drop $\pm$ to focus on the magnitude of $dx$. 
 				\begin{flalign*}
 					\frac{1}{2\sqrt{1-\frac{kx^2}{2E}}\sqrt{\frac{2E}{k}}\int_{\theta = 0}^{\theta = \sin^{-1} A\sqrt{\frac{k}{2E}}}~d\theta} &= \frac{1}{2\sqrt{1-\frac{kx^2}{2E}}\sqrt{\frac{2E}{k}}\int_{\theta = 0}^{\theta = \sin^{-1} 1}~d\theta}\\
 					&= \frac{1}{\pi \sqrt{A^2 - x^2}}\\
@@ -274,10 +274,55 @@
 \exercise{1.12}{
 	What if we are interested in finding the momenta ($p=mv$) distribution for the classical harmonic oscillator? 
 	\begin{itemize}
-		\item Find the classical probability distribution $\rho(p)$; note that $p \in \left[-\sqrt{2mE}, -\sqrt{2mE} \right]$.
+		\item Find the classical probability distribution $\rho(p)$; note that $p \in \left[-\sqrt{2mE}, \sqrt{2mE} \right]$.
+		As before, we compute total energy and substitute.
+		\begin{flalign*}
+				E = U+K &= \frac{kx^2}{2}+\frac{mv(x)^2}{2} = \frac{1}{2}kx^2+\frac{p(x)^2}{2m}\\
+				\implies x(p) &= \pm \sqrt{\frac{2mE-p^2}{mk}}\\
+				dx &= \pm \frac{-p}{mk}\frac{1}{\sqrt{\frac{2mE-p^2}{mk}}}~dp = \mp \frac{p}{mk}\frac{1}{\sqrt{\frac{2mE-p^2}{mk}}}~dp = \mp \frac{p}{mk(2mE-p^2)}~dp\\
+				\rho(x(p))dx &= \frac{dt}{T} = \frac{\derivative{t}{x}	dx}{T} = \pm \frac{1}{v(x(p))T}dx = \frac{1}{v(x(p))T}\Bigl(\mp \frac{p}{\sqrt{mk(2mE-p^2)}}~dp \Bigr)\\
+				& = \mp \frac{1}{v(p)T}\Bigl(\frac{p}{\sqrt{mk(2mE-p^2)}}~dp \Bigr) = \rho(p)\frac{p}{\sqrt{mk(2mE-p^2)}}~dp\\
+				T &= \int_{p(a)}^{p(b)}  \mp \frac{1}{v(p)} \underbrace{\Bigl(\frac{p}{\sqrt{mk(2mE-p^2)}}~dp \Bigr)}_{dx(p)}\\
+				\therefore \rho(p) = \frac{1}{v(p)\int_{-\sqrt{2mE}}^{\sqrt{2mE}} \mp \frac{1}{v(p)}\Bigl(\frac{p}{\sqrt{mk(2mE-p^2)}}~dp \Bigr)}
+		\end{flalign*}
+		Observe $\frac{1}{v(p)} = \frac{dt}{dx(p)}$, and so $\mp C(p)~dp \implies \pm dx(p)$. Recall that the net external force equals the change in momentum of a system divided by the time over which it changes. As the particle moves leftward, the change in distance is negative but the change in momentum is positive,
+		 so $p(a) = \sqrt{2mE}$ (i.e., it starts to slow down while gaining momentum in the direction of the net restoring force, which pushes the particle in the opposite direction -- namely, towards equilibrium where force is net zero.) Similarly, the particle reaches the equilibirum point but has gained momentum, moving
+		 past this location, with the restoring force growing to act in the opposite direction to slow the particle and return it to equilibirum; thus, the change in momentum is negative, and so $p(b)=-\sqrt{2mE}$. Energy is conserved if the process repeats ad nauseum without any frictional (damping) forces. To change the limits of integration to the form above,
+		 simply note that the inverse relationship holds as expressed in the $\mp$ indication of the integrand. We now drop this entirely to focus on the magnitude of change over the range, $dx(p)$. 
+		\begin{flalign*}
+			\rho(p) &= \frac{1}{v(p)\int_{-\sqrt{2mE}}^{\sqrt{2mE}}\frac{1}{v(p)}\Bigl(\frac{p}{\sqrt{mk(2mE-p^2)}}~dp \Bigr)}\\
+			&= \frac{1}{\frac{p}{m}\int_{-\sqrt{2mE}}^{\sqrt{2mE}}\frac{1}{\frac{p}{m}}\Bigl(\frac{p}{\sqrt{mk(2mE-p^2)}}~dp \Bigr)}\\
+			&= \frac{1}{\frac{p}{\sqrt{mk}}\int_{-\sqrt{2mE}}^{\sqrt{2mE}}\frac{dp}{\sqrt{2mE-p^2}}}\\
+		\end{flalign*}
+		Make a trigonometric substitution,
+		\begin{flalign*}
+			p &= \sqrt{2mE}\sin\theta,~\theta \in \left[\frac{-\pi}{2}, \frac{\pi}{2}\right]\\
+			dp &= \sqrt{2mE}\cos\theta\\
+			\theta &= \sin^{-1}\frac{p(x)}{\sqrt{2mE}}\\
+			p^2 &= 2mE\sin^2\theta \implies 1 - \sin^2\theta = \cos^2\theta = 1 - \frac{p^2}{2mE}\\
+			\therefore 2mE\cos^2 \theta &= 2mE - p^2\\
+		\end{flalign*}
+		Making the substitutions and computing, we see that $\rho(p) = \frac{\sqrt{mk}}{\pi p}$. Also, by using trigonometric substitution,
+		 we can show $$\int \rho(x(p))~dx = \int_{-\sqrt{2mE}}^{\sqrt{2mE}}\rho(p)\frac{p}{\sqrt{mk(2mE-p^2)}}~dp = \int_{-\sqrt{2mE}}^{\sqrt{2mE}}\frac{\sqrt{mk}}{\pi p}\frac{p}{\sqrt{mk(2mE-p^2)}}~dp  = 1$$
 		\item Calculate $\langle p \rangle$, $\langle p^2 \rangle$, and $\sigma_p$.
+		\begin{flalign*}
+			\langle p \rangle &= \int_{-\sqrt{2mE}}^{\sqrt{2mE}} p\rho(x(p))~dp =\int_{-\sqrt{2mE}}^{\sqrt{2mE}}p\frac{\sqrt{mk}}{\pi p}\frac{p}{\sqrt{mk(2mE-p^2)}}~dp=0\\
+			\langle p^2 \rangle &=  \int_{-\sqrt{2mE}}^{\sqrt{2mE}} p^2\rho(x(p))~dp = \int_{-\sqrt{2mE}}^{\sqrt{2mE}}p^2\frac{\sqrt{mk}}{\pi p}\frac{p}{\sqrt{mk(2mE-p^2)}}~dp=mE\\
+			\sigma_p &= \sqrt{\langle p^2 \rangle - \langle p \rangle} = \sqrt{mE}\\
+		\end{flalign*}
 		\item What is the classical undertainty product $\sigma_x\sigma_p$ for this system? 
 		Notice that this product can be as small as you like, classically, simply by sending $E \rightarrow 0$.
-		But in quantum mechanics, the energy of a SHM cannot be less that $\hbar\omega/2$, where $\omega = \sqrt{k/m}$ is the classical frequency. In that case what can you say about the uncertainty product?
+		But in quantum mechanics, the energy of a SHO cannot be less than $\hbar\omega/2$, where $\omega = \sqrt{k/m}$ is the classical frequency. In that case what can you say about the uncertainty product?
+		Recall $\sigma_x = \frac{A}{\sqrt{2}}$ as found previously.
+		\begin{flalign*}
+			\sigma_p\sigma_x = A\sqrt{\frac{mE}{2}}
+		\end{flalign*}
+		Now, for the quantum case, $E \geq \hbar \omega/2$. Therefore,
+		\begin{flalign*}
+			\sigma_p\sigma_x \geq A \sqrt{\frac{m \frac{\hbar \omega}{2}}{2}} = A\frac{\sqrt{\hbar \omega m}}{2}
+		\end{flalign*}
+		With a more precisely determined amplitude of oscillation, the more precisely we can determine a particle's position and the less precisely we can determine its momentum.
+		Conversely, with a more precisely determined particle frequency, the more precisely we can determine its momentum and the less precisely we can determine its position.\\\\
+		Aside: From the de Broglie relation, $\lambda = \frac{2\pi \hbar}{p}$. Also note $f = \frac{c}{\lambda}$. This shows that particles with higher momentum have a higher frequency.
 	\end{itemize}
 }
