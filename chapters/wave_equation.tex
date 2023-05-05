@@ -229,7 +229,7 @@
 	\begin{flalign*}
 		\rho(x)dx = \frac{dt}{T} &= \frac{\derivative{t}{x}	dx}{T} = \frac{1}{v(x)T}dx\\
 		T &= \int_0^T dt = \int_a^b \frac{1}{v(x)}dx\\
-		\implies \rho(x) = \frac{1}{v(x)T}
+		\implies \rho(x) &= \frac{1}{v(x)T}
 	\end{flalign*}
 		\begin{itemize}
 			\item Use conservation of energy to express speed in terms of potential well and energy.
@@ -239,31 +239,45 @@
 			\item Find the probability density for simple harmonic oscillator, $V(x)=\frac{kx^2}{2}$. Check normalization.
 				\begin{flalign*}
 					v(x) &= \pm \sqrt{\frac{2(E-V(x))}{m}} = \pm \sqrt{\frac{2E-kx^2}{m}}\\
-					\rho(x) &= \frac{1}{\pm \sqrt{\frac{2E-kx^2}{m}} \int_{-A}^{A} \frac{1}{\pm \sqrt{\frac{2E-kx^2}{m}}} ~dx}\\
-					&= \frac{1}{\sqrt{\frac{2E-kx^2}{m}}\sqrt{\frac{m}{2E}}\int_{-A}^{A}\frac{1}{\sqrt{1-\frac{kx^2}{2E}}}~dx}\\
-					& = \frac{1}{2\sqrt{1-\frac{kx^2}{2E}}\int_{0}^{A}\frac{1}{\sqrt{1-\frac{kx^2}{2E}}}~dx}\\
-					x = \frac{1}{\sqrt{\frac{k}{2E}}}\sin \theta = \sqrt{\frac{2E}{k}} \sin \theta,~\theta \in \left[\frac{-\pi}{2}, \frac{\pi}{2} \right]\\
-					\cos^2 \theta = 1 - \sin^2 \theta = 1 - \frac{k}{2E}x^2 \implies \cos \theta = \sqrt{1-\frac{kx^2}{2E}}\\
-					dx = \sqrt{\frac{2E}{k}}\cos \theta d\theta 
+					\rho(x) &= \frac{1}{\pm \sqrt{\frac{2E-kx^2}{m}} \int_{-A}^{A} \frac{1}{ \sqrt{\frac{2E-kx^2}{m}}} ~dx}\\
+					&= \frac{1}{\pm \sqrt{\frac{2E-kx^2}{m}}\sqrt{\frac{m}{2E}}\int_{-A}^{A}\frac{1}{\sqrt{1-\frac{kx^2}{2E}}}~dx}\\
+					&= \frac{1}{\pm 2\sqrt{1-\frac{kx^2}{2E}}\int_{0}^{A}\frac{1}{\sqrt{1-\frac{kx^2}{2E}}}~dx}\\
 				\end{flalign*}
-				Where we note that for a SHM, the turning points are at the amplitudes $\pm A$ of the oscillation and apply a familiar trigonometric substitution; see Paul's online math notes.
+				Now apply a trig substitution to simplify computation; see Paul's online math notes.
+				\begin{flalign*}
+					x &= \frac{1}{\sqrt{\frac{k}{2E}}}\sin \theta = \sqrt{\frac{2E}{k}} \sin \theta,~\theta \in \left[\frac{-\pi}{2}, \frac{\pi}{2} \right]\\
+					\cos^2 \theta &= 1 - \sin^2 \theta = 1 - \frac{k}{2E}x^2 \implies \cos \theta = \sqrt{1-\frac{kx^2}{2E}}\\
+					dx &= \sqrt{\frac{2E}{k}}\cos \theta d\theta \\
+				\end{flalign*}
+				Where we note that for a SHM, the turning points are at the amplitudes $\pm A$ of the oscillation and apply the familiar trigonometric substitution. We drop $\pm$ to focus on the magnitude of $dx$. 
 				\begin{flalign*}
 					\frac{1}{2\sqrt{1-\frac{kx^2}{2E}}\sqrt{\frac{2E}{k}}\int_{\theta = 0}^{\theta = \sin^{-1} A\sqrt{\frac{k}{2E}}}~d\theta} &= \frac{1}{2\sqrt{1-\frac{kx^2}{2E}}\sqrt{\frac{2E}{k}}\int_{\theta = 0}^{\theta = \sin^{-1} 1}~d\theta}\\
 					&= \frac{1}{\pi \sqrt{A^2 - x^2}}\\
 					\rho(x) &= 
 					\begin{cases}
 						\frac{1}{\pi \sqrt{A^2 - x^2}},       & \text{if}\ -A < x < A, \\
-						  0 & \text{otherwise}
+						0 & \text{otherwise}
 					\end{cases}\\
-					\int_{-A}^A \rho(x) ~dx = \frac{2}{\pi}\int_{0}^{A} \frac{1}{\sqrt{A^2 - x^2}} ~dx = \frac{2}{\pi}\sin^{-1}\frac{x}{A} \Biggr|_{-A}^A = 1\\
+					\int_{-A}^A \rho(x) ~dx = \frac{2}{\pi}\int_{0}^{A} \frac{1}{\sqrt{A^2 - x^2}} ~dx = \frac{2}{\pi}\sin^{-1}\frac{x}{A} \Biggr|_{0}^A = 1\\
 				\end{flalign*}
-			\item Find the first and second expected value of position. Find $\sigma_x$. Note that knowing the odd integrand for an even interval yields 0, but can verify with substitution, $u = A^2 - x^2$. It is also helpful to use $x = A \sin \theta$ for the second moment substitution.
+				\item Find the first and second expected value of position. Find $\sigma_x$. Note that knowing the odd integrand for an even interval yields 0, but can verify with substitution, $u = A^2 - x^2$. It is also helpful to use $x = A \sin \theta$ for the second moment substitution.
 				\begin{flalign*}
 					\langle x \rangle &= \int_{-A}^{A}\frac{x}{\pi \sqrt{A^2 - x^2}}~dx ~/~ 1 = 0\\
 					\langle x^2 \rangle &= \int_{-A}^{A}\frac{x^2}{\pi \sqrt{A^2 - x^2}}~dx ~/~ 1 = \frac{2}{\pi} \Biggl(  \frac{-x \sqrt{A^2-x^2}}{2}+\frac{A^2}{2}\sin^{-1} \frac{x}{A}\Biggr)\Biggr|_{-A}^A = \frac{A^2}{2}\\
 					\sigma_x &= \langle x^2 \rangle - \langle x \rangle^2 \implies \sigma_x = \frac{A}{\sqrt{2}}
 				\end{flalign*}
+				\includegraphics[width=\textwidth]{./chapters/graphs_ch1/1_11_1.png}
 
 		\end{itemize}
 }
 
+\exercise{1.12}{
+	What if we are interested in finding the momenta ($p=mv$) distribution for the classical harmonic oscillator? 
+	\begin{itemize}
+		\item Find the classical probability distribution $\rho(p)$; note that $p \in \left[-\sqrt{2mE}, -\sqrt{2mE} \right]$.
+		\item Calculate $\langle p \rangle$, $\langle p^2 \rangle$, and $\sigma_p$.
+		\item What is the classical undertainty product $\sigma_x\sigma_p$ for this system? 
+		Notice that this product can be as small as you like, classically, simply by sending $E \rightarrow 0$.
+		But in quantum mechanics, the energy of a SHM cannot be less that $\hbar\omega/2$, where $\omega = \sqrt{k/m}$ is the classical frequency. In that case what can you say about the uncertainty product?
+	\end{itemize}
+}
