@@ -430,3 +430,13 @@ Show that $$\derivative{}{t} \int_{\mathbb{R}}\Psi^*\Psi~dx=0$$ for any two (nor
 		\end{flalign*} 
 	\end{itemize}
 }
+
+\exercise{1.17}{
+	Suppose you want to describe an unstable particle, that sponraneously disintegrates with a ``lifetime of $\tau$''. In that case the total probability of findind the particle somehwhere
+	should not be constant, but should decrease at (say) an exponential rate: $$P(t) \equiv \int_{\mathbb{R}} |\Psi(x,t)|^2~dx = e^{-\frac{t}{\tau}}$$ A crude way of achieveing this result is as follows.
+	In Equation 1.24 we tacitly assumed to the conservation of probability enshrined in Equation 1.27. What if we assign to $V$ an imaginary part: $$V=V_0-i\Gamma,$$ where $V_0$ is the true potential energy and $\Gamma$ is a positive real constant?
+	\begin{itemize}
+		\item Show that (in place of Equation 1.27) we now get $$\derivative{P}{t}=-\frac{2\Gamma}{\hbar}P$$
+		\item Solve for $P(t)$, and find the lifetime of the particle in terms of $\Gamma$.
+	\end{itemize}
+}
