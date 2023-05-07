@@ -353,4 +353,53 @@
 		 \end{flalign*}
 	\end{itemize}
 	Thus, we see a net zero probability flow in and out of this region: the probability of finding particle at position $x$ is a constant over this region should we have probability current of 0.
+}\\ \\
+
+\exercise{1.15}{
+Show that $$\derivative{}{t} \int_{\mathbb{R}}\Psi^*\Psi~dx=0$$ for any two (normalizable) solutions to Schro (with the same $V(x)$), $\Psi_1$, and $\Psi_2$.
+	\begin{flalign*}
+		\derivative{}{t} \int_{\mathbb{R}}\Psi^*\Psi~dx&=\int_{\mathbb{R}}\pdv{\Psi^*\Psi}{t}~dx\\
+		&= \frac{i\hbar}{2m}\int_{\mathbb{R}}\Bigl(\pdv{\Psi^{*}_1}{t}\Psi_2+\Psi_1^{*}\pdv{\Psi_2}{x}\Bigr)~dx\\
+		&=\frac{i\hbar}{2m}\int_{\mathbb{R}}\Bigl(-\pdv[2]{\Psi^{*}_1}{x}\Psi_2+\frac{iV\Psi_1^{*}}{\hbar}\Psi_2+\pdv[2]{\Psi_2}{x}\Psi_1^{*}-\frac{iV\Psi_2}{\hbar}\Psi_1^{*}\Bigr)~dx\\
+		&=-\frac{i\hbar}{2m}\int_{\mathbb{R}} \Bigl(\pdv[2]{\Psi^{*}_1}{x}\Psi_2-\pdv[2]{\Psi_2}{x}\Psi_1^{*}\Bigr)~dx\\
+		&=-\frac{i\hbar}{2m}\int_{\mathbb{R}} \Bigl(\underbrace{\pdv{\Psi^{*}_1}{x}\Psi_2}_0 \Bigr|_{-\infty}^\infty-\int_{\mathbb{R}}\pdv{\Psi_1^{*}}{x}\pdv{\Psi_2}{x}~dx -\underbrace{\pdv{\Psi_2}{x}\Psi_1^{*}}_0 \Bigr|_{-\infty}^\infty+\int_{\mathbb{R}}\pdv{\Psi_1^{*}}{x}\pdv{\Psi_2}{x}~dx \Bigr)~dx=0\\QED
+	\end{flalign*}
+}
+
+\exercise{1.16}{
+	A particle is represented (at time $t=0$) by wave function $$
+	\Psi(x,0) =
+		\begin{cases}
+			A(a^2-x^2),       & \text{if}\ -a \leq x \leq a, \\
+			   \text{otherwise}
+		\end{cases}$$ 
+	\begin{itemize}
+		\item Determine normalization constant $A$.
+		\begin{flalign*}
+			1=|A|^2\int_{-a}^a(a^2-x^2)~dx \implies A = \frac{1}{4a^2}\sqrt{\frac{15}{a}} 
+		\end{flalign*}
+		\item What is the expection value of $x$?
+		\begin{flalign*}
+			\langle x \rangle = \int_{-a}^{a}x|\Psi|^2~dx=0 \text{, odd integrand} 
+		\end{flalign*}
+		\item What is the expectation value of $p$? Note that you cannot get it from $\langle p \rangle = m\derivative{\langle x \rangle}{t}$. Why? 
+		Since we only know $\langle x \rangle$ at $t=0$, we cannot calculate this directly; we would need a $\Psi$ valid for $\forall t$.
+		\begin{flalign*}
+			\langle p \rangle = -i \hbar |A|^2\int_{-a}^{a} (a^2-x^2)\derivative{(a^2-x^2)}{x}~dx=0 \text{, odd integrand} 
+		\end{flalign*}
+		\item What is the expectation value of $x^2$? 
+		\begin{flalign*}
+			\langle x^2 \rangle = \int_{-a}^{a}x^2|\Psi|^2~dx=\frac{a^2}{7} 
+		\end{flalign*}
+		\item What is the expectation value of $p^2$?
+		\begin{flalign*}
+			\langle p^2 \rangle = -i \hbar |A|^2\int_{-a}^{a} (a^2-x^2)\derivative[2]{(a^2-x^2)}{x}~dx=\frac{5\hbar^2}{2a^2}
+		\end{flalign*}
+		\item Find the uncertainty in $x$ and the uncertainty in $p$. Check this is consistent with the uncertainty principle.
+		\begin{flalign*}
+			\sigma_x = \sqrt{\langle x^2 \rangle - \langle x \rangle^2} = \frac{a}{\sqrt{7}}\\
+			\sigma_p = \sqrt{\langle p^2 \rangle - \langle p \rangle^2} = \sqrt{\frac{5}{2}}\frac{\hbar}{a}\\
+			\sigma_x\sigma_p = \sqrt{\frac{10}{7}}\frac{\hbar}{2} \geq \frac{\hbar}{2}
+		\end{flalign*} 
+	\end{itemize}
 }
