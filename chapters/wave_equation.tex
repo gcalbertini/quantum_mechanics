@@ -2,6 +2,31 @@
 
 \section{Exercises}
 
+\exercise{1.3}{
+	Consider the gaussian distribution $$\rho(x) = Ae^{-\lambda (x-a)^2}$$ where $A, a, \lambda$ are all real constants. 
+	\begin{itemize}
+		\item Find A from integrating the probability density over all reals.
+		\begin{flalign*}
+			1 &= A \int_{\mathbb{R}} e^{-\lambda (x-a)^2}~dx\\
+			&= A \bigg[\int_{-\infty}^{0} e^{-\lambda (x-a)^2}~dx+\int_0^{\infty} e^{-\lambda (x-a)^2}~dx\bigg]\\
+			&= A \bigg[-\int_{0}^{-\infty} e^{-\lambda (x-a)^2}~dx+\int_0^{\infty} e^{-\lambda (x-a)^2}~dx\bigg]\\
+		\end{flalign*}
+		Make substitution of $u = \sqrt{\lambda}(x-a)$. Evaluate the error function accordingly, and note that the adjusted bounds can be reconstructed as the original's.
+		\begin{flalign*}
+			1 &= \frac{1}{\sqrt{\lambda}}A \bigg[-\int_{0}^{-\infty} e^{-u^2}~du+\int_0^{\infty} e^{-u^2}~du\bigg]\\
+			&= \frac{\sqrt{\pi}}{2}\frac{1}{\sqrt{\lambda}}A \bigg[\cancelto{1}{-\erf(-\infty)}+\cancelto{0}{\erf(0)}] \implies A = \sqrt{\frac{\lambda}{\pi}}\\
+			\therefore \rho(x) = \sqrt{\frac{\lambda}{\pi}}e^{-\lambda (x-a)^2}
+		\end{flalign*}
+		\item Find the first two moments of position and the relevant standard deviation.
+		\begin{flalign*}
+			\langle x \rangle &= \sqrt{\frac{\lambda}{\pi}} \int_{\mathbb{R}} xe^{-\lambda (x-a)^2}~dx=a\\
+			\langle x^2 \rangle &= \sqrt{\frac{\lambda}{\pi}} \int_{\mathbb{R}} x^2e^{-\lambda (x-a)^2}~dx=a^2+\frac{1}{2\lambda}\\
+			\sigma_x &= \sqrt{\langle x^2 \rangle - \langle x \rangle^2} = \frac{1}{2\lambda}
+		\end{flalign*}
+		Where we used the fact that odd integrands over a symmetric interval sum to 0 and that the gamma function can be defined via a convergent improper integral.
+	\end{itemize}
+}
+
 \exercise{1.4}{
 	Given positive constants A, a, and b:
 	\begin{flalign*}
