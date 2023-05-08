@@ -437,6 +437,46 @@ Show that $$\derivative{}{t} \int_{\mathbb{R}}\Psi^*\Psi~dx=0$$ for any two (nor
 	In Equation 1.24 we tacitly assumed to the conservation of probability enshrined in Equation 1.27. What if we assign to $V$ an imaginary part: $$V=V_0-i\Gamma,$$ where $V_0$ is the true potential energy and $\Gamma$ is a positive real constant?
 	\begin{itemize}
 		\item Show that (in place of Equation 1.27) we now get $$\derivative{P}{t}=-\frac{2\Gamma}{\hbar}P$$
+		\begin{flalign*}
+			\pdv{\Psi}{t} &= \frac{i\hbar}{2m}\pdv[2]{\Psi}{x}-\frac{i}{\hbar}(V_0-i\Gamma)\Psi = \frac{i\hbar}{2m}\pdv[2]{\Psi}{x}-\frac{i}{\hbar}V_0\Psi-\frac{\Gamma}{\hbar}\Psi\\
+			\pdv{\Psi^*}{t} &= -\frac{i\hbar}{2m}\pdv[2]{\Psi^*}{x}+\frac{i}{\hbar}(V_0+i\Gamma)\Psi^* = -\frac{i\hbar}{2m}\pdv[2]{\Psi^*}{x}+\frac{i}{\hbar}V_0\Psi^*-\frac{\Gamma}{\hbar}\Psi^*\\\\
+			\derivative{P}{t} &= \derivative{}{t} \int_{\mathbb{R}} |\Psi|^2~dx =  \int_{\mathbb{R}} \pdv{}{t}\Psi\Psi^*~dx= \int_{\mathbb{R}}\biggl(\Psi^*\pdv{\Psi}{t}+\pdv{\Psi^*}{t}\Psi\biggr)~dx\\
+			&=\frac{i\hbar}{2m}\int_{\mathbb{R}} \biggl(\Psi^*\pdv[2]{\Psi}{x}-\Psi\pdv[2]{\Psi^*}{x}\biggr)~dx - \frac{2\Gamma}{\hbar}\int_{\mathbb{R}} \Psi^*\Psi~dx\\
+			&=\frac{i\hbar}{2m}\int_{\mathbb{R}} \biggl(\pdv{}{x}\biggl(\Psi^*\pdv{\Psi}{x}-\Psi\pdv{\Psi^*}{x}\biggr)\biggr)~dx-\frac{2\Gamma}{\hbar}\int_{\mathbb{R}} |\Psi|^2~dx\\
+			&= \frac{i\hbar}{2m}\cancelto{0}{\biggl(\Psi^*\pdv{\Psi}{x}-\Psi\pdv{\Psi^*}{x}\biggr)}\Biggr|_\mathbb{R}-\frac{2\Gamma}{\hbar}P(t)\\
+			&= -\frac{2\Gamma}{\hbar}P(t)\\QED
+		\end{flalign*}
 		\item Solve for $P(t)$, and find the lifetime of the particle in terms of $\Gamma$.
+			\begin{flalign*}
+				\frac{dP(t)}{P(t)}&=-\frac{2\Gamma}{\hbar}~dt\\
+				\ln(P(t)) &= -\frac{2\Gamma}{\hbar}t+C \implies P(t) = Ke^{-\frac{2\Gamma}{\hbar}t}\\
+				P(0)&=1=K\\
+				\therefore P(t)&=e^{-\frac{2\Gamma}{\hbar}t} \equiv e^{-\frac{t}{\tau}} \implies \tau = \frac{\hbar}{2\Gamma}\\
+			\end{flalign*}
 	\end{itemize}
+}
+\exercise{1.18}{
+	Very roughly speaking, quantum mechanics is relevant when the de Broglie wavelength of the particle in question $(h/p)$ is greater than the characteristic size of the system $d$. In thermal equilibirum at (Kelvin) temperature $T$,
+	the average kinetic energy of a particle is $$\frac{p^2}{2m}=\frac{3}{2}k_{B}T,$$ where $k_B$ is the Boltzmann's constant, so the typical wavelength is $$\lambda = \frac{h}{\sqrt{3mk_{B}T}}$$
+	The purpose of this problem is to determine which systems will have to be treated quantum mechanically, and which can be safely described classically.
+	\begin{itemize}
+		\item \textbf{Solids}. The lattice spacing in a typical solid is around $d = 0.3$ nm. Find the temperature below which the unbound electrons in a solid are quantum mechanical. Below what temperature are the nuclei in a solid quantum mechanical? 
+		(Use silicon as an example).
+		\begin{flalign*}
+			\lambda &= \frac{h}{\sqrt{3mk_{B}T}} > d \implies T < \frac{h^2}{3mk_Bd^2}\\
+			T_{e} &< 1.3 \times 10^5 K \\
+			T_{Si_{nuclei,~solid}} &< 2.5 K\\
+		\end{flalign*}
+		Where we have used $d = 0.3 \times 10^{-9}$ m, $m_{Si_{nuclei}} = 28.086m_p = 28.086 \times 1.7 \times 10^{-27}$ kg and $m_e = 9.8 \times 10^{-31}$ kg.\\\\ Moral: The free electrons in a solid are always quantum mechanical; the nuclei are generally not quantum mechanical. The same goes for liquids (for which the interatomic spacing is roughly the same), with the exception of helium below 4 $K$.
+		\item \textbf{Gases}. For what temperatures are the atoms in an ideal gas at pressure $P$ quantum mechanical? Obviously (for the gas to show quantum mechanical beahvior) we want the mass to be as small as possible, and pressure to be as large as possible. Put in the numbers for monoatomic hydrogen
+		at atmospheric pressure. Is hydrogen in outer space (where the interatomic spacing is about one centimeter and the temperature around 3 $K$) quantum mechanical?
+		\\\\We assume volume ocuppied by one molecule ($N=1$) as a cubic box, $V=d^3$.
+		\begin{flalign*}
+				PV &= Nk_BT \implies d = \sqrt[3]{\frac{k_BT}{P}}\\\\
+				\lambda &= \frac{h}{\sqrt{3mk_{B}T}} > d \implies  T < \frac{1}{k_B}\Biggl( \frac{h^2}{3m} \Biggr)^{3/5}P^{2/5}\\
+				T_{e} < 2.8 K\\
+				T_{H_{nuclei,~gas}} < 6.3 \times 10^{-14} K\\
+			\end{flalign*}
+			Where we have used $d = 1 \times 10^{-2}$ m, $m_{H_{nuclei}} = 4.003m_p = 4.003 \times 1.7 \times 10^{-27}$ kg, P = $1~atm$ = 101,325 Pa. We observe that at 3 $K$ (monoatomic) hydrogen will behave classically and the electrons will also operate in the classical regime.
+		\end{itemize}
 }
