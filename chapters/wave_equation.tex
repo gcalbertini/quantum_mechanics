@@ -102,15 +102,15 @@
 			\end{flalign*}
 			Now note the following is smells like the gamma function, and make substitution of $u = -x$ to change limits (also note that n is positive to extract the alternating negative one):
 			\begin{flalign*}
-				I_{n_1} = \int_{-\infty}^0 x^n e^{2 \lambda x} ~dx = \int_{\infty}^0 (-u)^n e^{2\lambda (-u)}~(-du) = -\int_{\infty}^0 (-1)^n u^n e^{-2 \lambda u} ~du  = (-1)^n \int_{0}^{\infty} x^n e^{-2 \lambda x} ~dx
+				I_{n_{-}} = \int_{-\infty}^0 x^n e^{2 \lambda x} ~dx = \int_{\infty}^0 (-u)^n e^{2\lambda (-u)}~(-du) = -\int_{\infty}^0 (-1)^n u^n e^{-2 \lambda u} ~du  = (-1)^n \int_{0}^{\infty} x^n e^{-2 \lambda x} ~dx
 			\end{flalign*}
 			By using substitution of the type $u = 2 \lambda x$ we get,
 			\begin{flalign*}
-				I_{n_1} = \frac{(-1)^n}{2\lambda (2\lambda)^n} \int_0^\infty e^{-u}u^n du = \frac{(-1)^n}{(2\lambda)^{n+1}} \Gamma(n+1), ~\Re(n) > -1
+				I_{n_{-}} = \frac{(-1)^n}{2\lambda (2\lambda)^n} \int_0^\infty e^{-u}u^n du = \frac{(-1)^n}{(2\lambda)^{n+1}} \Gamma(n+1), ~\Re(n) > -1
 			\end{flalign*}
 			where the last equation can be used to show the required base case of $I_0=\frac{1}{2\lambda}$. A similar analysis for the second integrand gives us the combined relation
 			\begin{flalign*}
-				\langle x^n \rangle &= \lambda I_n = \lambda(I_{n_1}+I_{n_2}) \\
+				\langle x^n \rangle &= \lambda I_n = \lambda(I_{n_{-}}+I_{n_+}) \\
 				& = \lambda \Biggl( \frac{(-1)^n + 1}{(2\lambda)^{n+1}}\Biggr)\Gamma(n+1)
 			\end{flalign*}
 			For practical purposes, we see that the first few moments give
