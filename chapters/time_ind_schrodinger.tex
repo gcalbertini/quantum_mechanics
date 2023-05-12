@@ -197,3 +197,69 @@
 	\end{flalign*}
 	The relative phase of the coefficients $\{c_n\}$ allow us to shift the starting point when measuring the expectation value of position.
 }
+
+\exercise{2.7MOD}{
+	A particle in an infinite square well has the initial wave function 
+	\begin{flalign*}
+		\Psi(x,0) = \begin{cases}
+			Ax, & 0 \leq x \leq a\\
+			A(a-x), & a/2 \leq x \leq a
+		\end{cases}
+	\end{flalign*}
+	\begin{itemize}
+		\item Sketch this out and determine normalization constant.
+			\begin{flalign*}
+				1 &= \int |\Psi|^2~dx = \int \Psi^*\Psi ~dx = |A|^2\Biggl[\int_0^{a/2}x^2~dx + \int_{a/2}^a (a-x)^2~dx\Biggr] \implies A = \frac{2 \sqrt{3}}{\sqrt{a^3}}
+			\end{flalign*}
+			\includegraphics[width=\textwidth]{./chapters/graphs_ch2/2_7_1.png}
+		\item Find $\Psi(x,t)$.
+			\begin{flalign*}
+				\Psi(x,t) =& \sum_{n=1}^\infty c_n\psi_n(x)e^{-\frac{iE_nt}{\hbar}} = \sum_{n=1}^\infty c_n \Psi_n(x,t)\\
+				c_n &= \sqrt{\frac{2}{a}}\int_0^a \sin \frac{n \pi x}{a}\Psi(x,0)~dx = \frac{2 \sqrt{3}}{\sqrt{a^3}}\sqrt{\frac{2}{a}} \Biggl[\int_0^{a/2}x\sin \frac{\pi n x}{a}~dx + \int_{a/2}^{a}(a-x)\sin \frac{\pi n x}{a}~dx\Biggr]\\
+				&= \frac{4 \sqrt{6}}{n^2\pi^2} \sin \frac{n \pi}{2} = \begin{cases}
+					(-1)^{\frac{n-1}{2}}\frac{4 \sqrt{6}}{n^2\pi^2}, & n \text{ odd}\\
+					0, & n \text{ even}
+				\end{cases}\\
+				\therefore \Psi(x,t) &= \frac{4 \sqrt{6}}{\pi^2} \sqrt{\frac{2}{a}} \sum_{1,3,5,\ldots} \frac{(-1)^{\frac{n-1}{2}}}{n^2}\sin \frac{n \pi x}{a}e^{-\frac{iE_nt}{\hbar}}\\
+				E_n &= \frac{n^2\pi^2\hbar^2}{2ma^2}
+			\end{flalign*}
+		\item What is the probability that the measurement of the energy would yield a value $E_1$?
+			\begin{flalign*}
+				|c_1|^2 = 0.9855
+			\end{flalign*}
+		\item Find the expectation value of the energy, using Eqn. 2.21.
+			\begin{equation*}
+				\langle H \rangle = \sum_{n=1,3,5,\ldots}^\infty |c_n|^2E_n = \frac{96\hbar^2}{2ma^2 \pi^2}\Biggl(\frac{1}{1^2}+\frac{1}{3^2}+\frac{1}{5^2}+\ldots\Biggr) = \frac{96\hbar^2}{2ma^2 \pi^2}\underbrace{(1-2^{-2})\zeta(2)}_{\frac{\pi^2}{8}} = \frac{6 \hbar^2}{ma^2} 
+			\end{equation*}
+		\item Determine how the Fourier Transform, Riemann's Zeta Function, and Basel problem are related.
+		\\\\Consider the Basel problem. We can express a function using the Fourier Transform. Consider the function $x^2$ that is continuos and differentiable on $[-L,L]=[-\pi, \pi]$.\\
+		\begin{flalign*}
+			f(x) &= \frac{a_0}{2}+\sum_{n=1}^{\infty}\Biggl(a_n\cos\frac{n \pi x }{L}+b_n\sin\frac{n \pi x }{L}\Biggr)\\
+			\frac{a_0}{2} &= \frac{1}{2L}\int_{-L}^Lf(x)~dx = \frac{2}{2 \pi} \int_0^\pi x^2~dx = \frac{\pi^2}{3}\\
+			a_n &= \frac{1}{L} \int_{-L}^{L} f(x) \cos \frac{n \pi x}{L}~dx = \frac{2}{\pi} \int_0^\pi x^2 \cos(n x) ~dx = \frac{4}{n^2}(-1)^n\\
+			b_n &= \frac{1}{L} \int_{-L}^{L} f(x) \sin \frac{n \pi x}{L}~dx = \frac{1}{\pi} \int_{-\pi}^\pi x^2 \sin(n x) ~dx = 0\\
+			f(\pi) = \pi^2 &= \frac{\pi^2}{3} + \sum_{n=1}^{\infty} \frac{4(-1)^n}{n^2}\cancelto{(-1)^n}{\cos(\pi n)} \iff 4 \sum_{n=1}^{\infty}\frac{1}{n^2}= \frac{2 \pi^2}{3} \implies \sum_{n=1}^{\infty}\frac{1}{n^2} = \frac{\pi^2}{6} \\
+			f(0) = 0 &= \frac{\pi^2}{3} + \sum_{n=1}^{\infty} \frac{4(-1)^n}{n^2}\cancelto{1}{\cos(0)} \iff - \sum_{n=1}^{\infty}\frac{(-1)^n}{n^2} = \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^2} = \frac{\pi^2}{12}\\
+		\end{flalign*}
+		The last two last lines are two such ``problems'' and note how we can take different functions to determine coefficients which the below will also show. Euler did the above differently (see YouTube) but now we can turn to Riemann's Zeta Function.
+		\begin{flalign*}
+			\frac{\pi^2}{6} &= \frac{1}{1^2}+\frac{1}{2^2}+\frac{1}{3^2}+\ldots\\
+			\frac{1}{2^2}\frac{\pi^2}{6} &= \frac{1}{2^2}+\frac{1}{4^2}+\frac{1}{6^2}+\ldots\\
+			(1-\frac{1}{2^2})\frac{\pi^2}{6} &= \frac{1}{1^2}+\frac{1}{3^2}+\frac{1}{5^2}+\ldots =\frac{\pi^2}{8}\\
+			(1-\frac{2}{2^2})\frac{\pi^2}{6} &= \frac{1}{1^2}-\frac{1}{2^2}+\frac{1}{3^2}-\frac{1}{4^2}+\ldots=\frac{\pi^2}{12}\\
+		\end{flalign*}
+		Now, generalize.
+		\begin{flalign*}
+			\zeta(z) = \frac{\pi^2}{6} &= \frac{1}{1^z}+\frac{1}{2^z}+\frac{1}{3^z}+\ldots\\
+			(1-\frac{1}{2^z})\zeta(z) &= \frac{1}{1^z}+\frac{1}{3^z}+\frac{1}{5^z}+\ldots\\
+			\frac{1}{2^z}\zeta(z) &= \frac{1}{2^z}+\frac{1}{4^z}+\frac{1}{6^z}+\ldots\\
+			(1-\frac{2}{2^z})\frac{\pi^2}{6} &= \frac{1}{1^z}-\frac{1}{2^z}+\frac{1}{3^z}-\frac{1}{4^z}+\ldots\\
+		\end{flalign*}
+		Note for the harmonic series case, we may assume it converges. With this in mind, the second line below produces a greater sum, which we assume also converges. But, the sum of this line must be the sum of the last line, which is greater still. Thus, our initial assumption was wrong and all of them must diverge.
+		\begin{flalign*}
+			\zeta(1) &= \frac{1}{1}+\frac{1}{2}+\frac{1}{3}+\ldots = \infty\\
+			(1-0.5)\zeta(1) &= \frac{1}{1}+\frac{1}{3}+\frac{1}{5}+\ldots = 0.5 \zeta(1) = \infty\\
+			0.5 \zeta(1) &= \frac{1}{2}+\frac{1}{4} +\frac{1}{6}+\ldots = \infty\\
+		\end{flalign*}
+	\end{itemize}
+}
