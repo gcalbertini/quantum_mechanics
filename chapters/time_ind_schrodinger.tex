@@ -261,5 +261,32 @@
 			(1-0.5)\zeta(1) &= \frac{1}{1}+\frac{1}{3}+\frac{1}{5}+\ldots = 0.5 \zeta(1) = \infty\\
 			0.5 \zeta(1) &= \frac{1}{2}+\frac{1}{4} +\frac{1}{6}+\ldots = \infty\\
 		\end{flalign*}
+		\item Discuss the general equation for the Riemann zeta function at even integers.\\\\
+		The equation for the Riemann zeta function at even integers can be stated as follows:
+
+		For any positive even integer \(s\), where \(s = 2k\) for some positive integer \(k\), the Riemann zeta function \(\zeta(s)\) is given by:
+
+		\[\zeta(2k) = \frac{(-1)^{k+1} \cdot (2\pi)^{2k} \cdot B_{2k}}{2 \cdot (2k)!},\]
+
+		where \(\pi\) is the mathematical constant pi, \(B_{2k}\) is the \(2k\)th Bernoulli number, and \((2k)!\) is the factorial of \(2k\).
+
+		One common definition of the Bernoulli numbers is through their generating function:
+
+		\[
+		\frac{t}{e^t - 1} = \sum_{n=0}^{\infty} \frac{B_n}{n!} t^n,
+		\]
+
+		where \(B_n\) represents the \(n\)th Bernoulli number.
+
+		Another way to define the Bernoulli numbers is using the recursive formula:
+
+		\[
+		B_0 = 1, \quad \text{and} \quad B_n = -\frac{1}{n+1} \sum_{k=0}^{n-1} \binom{n+1}{k} B_k,
+		\]
+
+		where \(\binom{n+1}{k}\) denotes the binomial coefficient, which is the number of ways to choose \(k\) objects from a set of \(n+1\) objects.
+
+		These definitions allow us to compute the Bernoulli numbers for any given index \(n\). However, it's worth noting that for odd indices \(n\) greater than 1, the Bernoulli numbers are always equal to zero.			
+		In summary, the Riemann zeta function at even integers is expressed in terms of the Bernoulli numbers and the constant \(\pi\), providing a closed-form formula for these specific values of \(s\).
 	\end{itemize}
 }
