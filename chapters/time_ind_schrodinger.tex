@@ -315,3 +315,24 @@
 	\end{flalign*}
 	We arrive at the same result using $\langle H \rangle =\sum_{n=1}^\infty |c_n|^2E_n = \sum_{n=1}^\infty P_nE_n$.
 }
+
+\exercise{2.10}{
+	\begin{itemize}
+		\item Construct $\psi_2$.
+			We will construct from $\sqrt{2}^{-1}(\hat{a}_{+})^2\psi_0$, but can also do (easier) $\sqrt{2}^{-1}(\hat{a}_{+})\psi_1$ since $\psi_1$ provided by text.
+			\begin{flalign*}
+				\psi_2 &= \frac{1}{\sqrt{2}}(\hat{a}_{+})^2\psi_0 = \frac{1}{\sqrt{2}}\Biggl(\frac{1}{\sqrt{2 \hbar m \omega}}(-i\hat{p}+m \omega x)\Biggr)^2\psi_0\\
+				&= \frac{1}{2\sqrt{2}\hbar m \omega}\Biggl(\hbar^2 \pdv[2]{}{x}+m^2\omega^2x^2-2m\omega \hbar x \pdv{}{x}-\hbar m \omega\Biggr)\psi_0\\
+				&= \frac{\Biggl(\frac{m \omega}{\pi \hbar}\Biggr)^{1/4}}{2\sqrt{2}\hbar m \omega}\Biggl(\hbar^2 \pdv[2]{}{x}+m^2\omega^2x^2-2m\omega \hbar x \pdv{}{x}-\hbar m \omega\Biggr)e^{-\frac{m \omega}{2 \hbar}x^2}\\
+				&= \frac{\sqrt{2}\Biggl(\frac{m \omega}{\pi \hbar}\Biggr)^{1/4}}{4\hbar m \omega}\Biggl(4m^2\omega^2 x^2 - 2 m \hbar \omega \Biggr)e^{-\frac{m \omega}{2 \hbar}x^2}\\
+				&= \sqrt{2}\Biggl(\frac{m \omega}{\pi \hbar}\Biggr)^{1/4}\Biggl(\frac{m\omega x^2}{\hbar}-\frac{1}{2}\Biggr)e^{-\frac{m \omega}{2 \hbar}x^2}
+			\end{flalign*}
+			Where we have used the fact that $-i m\omega(x \hat{p}+\hat{p}x)=-m\omega (2\hbar x \pdv{}{x}+\hbar)$.
+		\item Check orthgonality of first three wave functions.\\\\
+			First observe that $\psi_0$, $\psi_2$ are even and $\psi_1$ is odd; a product of an even and odd function gives an odd integrand over a symmetric integral that is then evaluated to zero. Thus, only one computation needed.
+			\begin{flalign*}
+				\int_{\mathbb{R}} \psi_2^* \psi_0~dx =\sqrt{2}\Biggl(\frac{m \omega}{\pi \hbar}\Biggr)^{1/2}\int_{\mathbb{R}} \Biggl(\frac{m\omega x^2}{\hbar}-\frac{1}{2}\Biggr)e^{-\frac{m \omega}{\hbar}x^2}~dx = 0
+			\end{flalign*}
+	\end{itemize}
+	\includegraphics[width=\textwidth]{./chapters/graphs_ch2/2_10_1.png}
+}
