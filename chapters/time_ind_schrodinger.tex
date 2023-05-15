@@ -287,6 +287,31 @@
 		where \(\binom{n+1}{k}\) denotes the binomial coefficient, which is the number of ways to choose \(k\) objects from a set of \(n+1\) objects.
 
 		These definitions allow us to compute the Bernoulli numbers for any given index \(n\). However, it's worth noting that for odd indices \(n\) greater than 1, the Bernoulli numbers are always equal to zero.			
-		In summary, the Riemann zeta function at even integers is expressed in terms of the Bernoulli numbers and the constant \(\pi\), providing a closed-form formula for these specific values of \(s\).
+		In summary, the Riemann zeta function at even integers is expressed in terms of the Bernoulli numbers and the constant \(\pi\), providing a closed-form formula for these specific values of \(s\). No closed-form expression yet exists for odd positive integers of the Ziemann function.
 	\end{itemize}
+}
+
+\exercise{2.8}{
+	A particle of mass $m$ in the infinite square well (of width $a$) starts out in the state $$\Psi(x,0) = \begin{cases}
+		A, & 0 \leq x \leq a/2\\
+		0, & a/2 \leq x \leq a
+	\end{cases}$$ for some constant $A$, so it is (at $t=0$) equally likely to be found at any point in the left half of the well. What is the probability that a measurement of the energy
+	at some later time would yield the value of $\frac{\hbar^2 \pi^2}{2ma^2}$?
+	\begin{flalign*}
+		1 &= \int \Psi\Psi^*~dx = |A|^2 \int_0^{a/2}~dx \implies A = \sqrt{\frac{2}{a}}\\
+		E_n &= \frac{\hbar^2 \pi^2 n^2}{2ma^2} \implies E_1 = \frac{\hbar^2 \pi^2}{2ma^2} \impliedby n=1\\
+		c_n &= \sqrt{\frac{2}{a}} \int_0^a \sin \frac{\pi x n}{a}\Psi(x,0)~dx = \sqrt{\frac{2}{a}}\sqrt{\frac{2}{a}} \int_{0}^{a/2} \sin \frac{\pi n x}{a} ~dx = -\frac{2}{\pi}(\cos \frac{\pi n}{2}-1)\\
+		c_1 & = \frac{2}{\pi} \implies P_1 = |c_1|^2 = 0.4053
+	\end{flalign*}
+}
+\exercise{2.9}{
+	For the wave function in Example 2.2, find the expectation value of $H$, at time $t=0$, the old-fashioned way: $$\langle H \rangle = \int \Psi(x,0)^*\hat{H}\Psi(x,0)~dx$$  Compare this result to that of Example 2.3. Because $\langle H \rangle $ is time-ind. then no loss of generality in using this time.
+	\begin{flalign*}
+		\langle H \rangle &= \int \Psi(x,0)^*\hat{H}\Psi(x,0)~dx\\
+		&=\int_0^a \biggl[\sqrt{\frac{30}{a^5}}x(a-x)\biggr]^*\Biggl[-\frac{\hbar}{2m}\pdv[2]{}{x}+\cancelto{0}{V(x)}\Biggr]\biggl[\sqrt{\frac{30}{a^5}}x(a-x)\biggr]~dx\\
+		&=\int_0^a \biggl[\sqrt{\frac{30}{a^5}}x(a-x)\biggr]\Biggl[-\frac{\hbar}{2m}\pdv[2]{\sqrt{\frac{30}{a^5}}x(a-x)}{x}\Biggr]~dx\\
+		&= -\frac{\hbar^2}{m}\frac{30}{a^5}\int_0^a x^2-ax~dx\\
+		&= -\frac{5\hbar^2}{ma^2}
+	\end{flalign*}
+	We arrive at the same result using $\langle H \rangle =\sum_{n=1}^\infty |c_n|^2E_n = \sum_{n=1}^\infty P_nE_n$.
 }
