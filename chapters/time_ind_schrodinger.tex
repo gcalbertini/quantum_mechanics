@@ -504,3 +504,13 @@
 		\therefore \psi_n &= \Biggl(\frac{m \omega}{\pi \hbar}\Biggr)^{1/4}\frac{1}{\sqrt{2^n n!}}H_n(\sqrt{\frac{m \omega}{\hbar}}x)e^{-\frac{m \omega x^2}{2\hbar}}
 	\end{flalign*}
 }
+
+\exercise{2.16}{
+	In this problem we explore some of the more useful theorems (stated without proof) involving Hermite polynomials.
+	\begin{itemize}
+		\item The Rodrigues forula says that $$h(\xi) = (-1)^n e^{\xi^2}\derivative[n]{}{\xi}e^{-\xi^2}$$ Use it to derive $H_3$ and $H_4$.
+  		\item The following relation gives you $H_{n+1}$ in terms of the preceding Hermite polynomials: $$H_{n+1}(\xi)=2\xi H_n(\xi)-2nH_{n-1}(\xi)$$ Use it, together with previous results, to obtain $H_4$ and $H_5$.
+    	\item If you differentiate a polynomial of order $n$, you get one of order $n-1$. For Hermite polynomials, $$\derivative{H_n}{\xi}=2nH_{n-1}(\xi)$$ Check this by differentiating $H_5$ and $H_6$.
+     	\item $H_n(\xi)$ is the $n^{th}$ $z$-derivative, at $z=0$, of the generating function $e^{-z^2+2z\xi}$; or, to put it another way, it's the coefficient $z^n/n!$ in the Taylor series expansion for this function: $$e^{-z^2+2z\xi}=\sum_{n=0}^\infty \frac{z^n}{n!}H_n(\xi)$$ Use this to obtain $H_1$, $H_2$, and $H_3$.
+	\end{itemize}
+}
