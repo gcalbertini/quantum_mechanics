@@ -336,3 +336,61 @@
 	\end{itemize}
 	\includegraphics[width=\textwidth]{./chapters/graphs_ch2/2_10_1.png}
 }
+\exercise{2.11MOD}{
+	\begin{itemize}
+		\item Compute a general form for $I_s = \int_\mathbb{R} e^{-sx^2}~dx$ for $s >0$. Give an expression for $-\derivative{I_s}{s}$ and also show a general form for its integral over the real numbers. \pagebreak
+			\begin{flalign*}
+				I_s^2 &= \iint_\mathbb{R} e^{-s(x^2+y^2)}~dx dy\\
+				&= \int_{0}^\infty e^{-sr^2} r~dr \int_{0}^{2 \pi} d \theta~~(polar~coord.~transformation)\\
+				&= \pi \int_{0}^\infty e^{-st} ~dt~~(substitute~t=r^2)\\
+				&= \frac{\pi}{s} \implies I_s = \sqrt{\frac{\pi}{s}}\\
+				-\derivative{I_s}{s} &= \int_\mathbb{R} x^2e^{-sx^2}~dx\\
+				&= -\derivative{\sqrt{\frac{\pi}{s}}}{s} = \frac{\sqrt{\pi}}{2 s^{3/2}}
+			\end{flalign*}
+		\item Compute $\langle x \rangle, \langle x^2 \rangle, \langle p \rangle, \langle p^2 \rangle$ for states $\psi_0, \psi_1$ using explicit integration. 
+		\begin{flalign*}
+			\psi_0(x)&= \Biggl(\frac{m \omega}{\pi \hbar}\Biggr)^{1/4}e^{-\frac{m \omega}{2 \hbar}x^2}\\
+			\psi_1(x)&= \Biggl(\frac{m \omega}{\pi \hbar}\Biggr)^{1/4}\sqrt{\frac{2 m \omega }{\hbar}}xe^{-\frac{m \omega}{2 \hbar}x^2}\\\\
+			\langle x_0 \rangle &= \int_{\mathbb{R}} \psi_0^*x\psi_0~dx = \sqrt{\frac{m \omega}{\pi \hbar}}\int_{\mathbb{R}} xe^{-\frac{m \omega}{\hbar}x^2}~dx = 0\\
+			\langle x_1 \rangle & = \int_{\mathbb{R}} \psi_1^*x\psi_1~dx = \sqrt{\frac{4 m^3 \omega^3}{\pi \hbar^3}}\int_{\mathbb{R}} x^3 e^{-\frac{m \omega}{\hbar}x^2}~dx = 0\\
+			\langle x_0^2 \rangle & = \int_{\mathbb{R}} \psi_0^* x^2 \psi_0~dx =  \sqrt{\frac{m \omega}{\pi \hbar}}\int_{\mathbb{R}} x^2 e^{-\frac{m \omega}{\hbar}x^2}~dx\\
+			&= \sqrt{\frac{m \omega}{\pi \hbar}} \sqrt{\pi} \frac{1}{2 \frac{m \omega}{\hbar}\sqrt{\frac{m \omega}{\hbar}}}\\
+			&= \frac{\hbar}{2 m \omega}\\
+			\langle p_0 \rangle &= \int_{\mathbb{R}} \psi_0^* -i\hbar\pdv{}{x} \psi_0~dx = -i\hbar \int_\mathbb{R} \psi_0^* \derivative{\psi_0}{x}~dx\\
+			&=i m \omega \sqrt{\frac{m \omega}{\pi \hbar}} \int_\mathbb{R} xe^{-\frac{m \omega}{\hbar}x^2}~dx = 0\\
+			\langle p_1 \rangle &= \int_{\mathbb{R}} \psi_1^* -i\hbar\pdv{}{x} \psi_1~dx =-i \hbar \int_\mathbb{R} x(1-\frac{m \omega}{\hbar}x^2)e^{-\frac{m \omega}{\hbar}x^2}~dx = 0\\
+			\zeta \equiv \sqrt{\frac{m \omega}{\hbar}}x\\
+			\langle x_1^2 \rangle &= \frac{2}{\sqrt{\pi}} \frac{\hbar}{m \omega} \int_{\mathbb{R}} \zeta^4 e^{-\zeta^2} d\zeta\\
+			&= \frac{4}{\sqrt{\pi}} \frac{\hbar}{m \omega} \int_0^\infty \zeta^4 e^{-\zeta^2} d\zeta\\
+			&= \frac{2}{\sqrt{\pi}} \frac{\hbar}{m \omega} \int_0^\infty u^{3/2}e^{-u} du = \frac{2}{\sqrt{\pi}} \frac{\hbar}{m \omega} \Gamma(5/2)\\
+			&= \frac{3 \hbar}{2 m \omega}\\
+			\langle p_0^2 \rangle &= -\frac{2 \hbar m \omega}{\sqrt{\pi}}\Biggl(\int_0^\infty \zeta^2 e^{-\zeta^2}~d\zeta - \int_0^\infty e^{-\zeta^2}~d\zeta\Biggr)\\
+			&= -\frac{2 \hbar m \omega}{\sqrt{\pi}} \Biggl(\frac{1}{2}\Gamma(5/2)-\sqrt{\pi}\Biggr) = \frac{\hbar m \omega }{2}\\
+			\langle p_1^2 \rangle &= \frac{4 \hbar m \omega}{\sqrt{\pi}}\Biggl(3\int_0^\infty \zeta^2 e^{-\zeta^2}~d \zeta - \int_0^\infty \zeta^4 e^{-\zeta^2}~d \zeta\Biggr)\\
+			&= \frac{4 \hbar m \omega}{\sqrt{\pi}}\Biggl(\frac{3}{2} \Gamma(3/2) - \frac{1}{2}\Gamma(5/2)\Biggr) = \frac{3 \hbar m \omega}{2}\\
+		\end{flalign*}
+		\begin{flalign*}
+			\sigma_{x_0} &= \sqrt{\frac{\hbar}{2 m \omega}}\\
+				\sigma_{p_0} &= \sqrt{\frac{\hbar m \omega}{2}}\\
+				\sigma_{x_0}\sigma_{p_0} &= \frac{ \hbar}{2}\\
+				\sigma_{x_1} &= \sqrt{\frac{3 \hbar}{2 m \omega}}\\
+				\sigma_{p_1} &= \sqrt{\frac{3 \hbar m \omega}{2}}\\
+				\sigma_{x_1}\sigma_{p_1} &= \frac{3 \hbar}{2}\\
+			\end{flalign*}
+			\item Check the uncertainty principle in these cases.
+			\begin{flalign*}
+				\sigma_{x_0}\sigma_{p_0} &= \frac{\hbar}{2} \geq \frac{\hbar}{2}\\
+				\sigma_{x_1}\sigma_{p_1} &= \frac{3 \hbar}{2} \geq \frac{\hbar}{2}
+			\end{flalign*}
+		\item Compute $\langle T \rangle, \langle V \rangle$ for the states. Is sum what you would expect?
+			\begin{flalign*}
+				\langle V_0 \rangle &= \langle \frac{m \omega^2 x^2}{2} \rangle = \frac{m \omega^2 \langle x^2 \rangle}{2} = \frac{\hbar \omega }{4}\\
+				\langle T_0 \rangle &= \langle \frac{p^2}{2m} \rangle = \frac{\langle p^2 \rangle}{2m} = \frac{\hbar \omega }{4}\\
+				\langle T_0 \rangle + \langle V_0 \rangle &= \frac{\hbar}{2}\\
+				\langle V_1 \rangle &= \langle \frac{m \omega^2 x^2}{2} \rangle = \frac{m \omega^2 \langle x^2 \rangle}{2} = \frac{3 \hbar \omega }{4}\\
+				\langle T_1 \rangle &= \langle \frac{p^2}{2m} \rangle = \frac{\langle p^2 \rangle}{2m} = \frac{3 \hbar \omega }{4}\\
+				\langle T_1 \rangle + \langle V_1 \rangle &= \frac{3\hbar}{2}\\
+			\end{flalign*}
+			We see that the sums are the appropriate energy levels for the ground state and first excited state, respectively.
+		\end{itemize}
+}
