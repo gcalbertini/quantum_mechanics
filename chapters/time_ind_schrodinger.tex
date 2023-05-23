@@ -394,3 +394,113 @@
 			We see that the sums are the appropriate energy levels for the ground state and first excited state, respectively.
 		\end{itemize}
 }
+
+\c{2.12}{
+	Compute $\langle x \rangle, \langle x^2 \rangle, \langle p \rangle, \langle p^2 \rangle, \langle T \rangle$ for $n^{th}$ stationary state using ladder operators. 
+	\begin{flalign*}
+		\langle x \rangle &= \int_\mathbb{R} \psi_n^* \hat{x} \psi_n~dx = \int_\mathbb{R} \psi_n^* \Biggl[\sqrt{\frac{\hbar}{2 m \omega}}(\hat{a}_++\hat{a}_-)\Biggr]\psi_n~dx = \sqrt{\frac{\hbar }{2 m \omega}}\int_\mathbb{R}\psi_n^*(\hat{a}_+\psi_n+\hat{a}_-\psi_n)~dx\\
+		&=\sqrt{\frac{\hbar}{2 m \omega}}\int_\mathbb{R}\psi_n^*(A_{n+1}\psi_{n+1}+A_{n-1}\psi_{n-1})~dx\\
+		&= \sqrt{\frac{\hbar}{2 m \omega}} \Biggl[A_{n+1}\cancelto{0}{\int_\mathbb{R}\psi_n^*\psi_{n+1}~dx}+A_{n-1}\cancelto{0}{\int_\mathbb{R}\psi_n^*\psi_{n-1}~dx}\Biggr]=0\\
+		\langle x^2 \rangle &= \int_\mathbb{R} \psi_n^* \Biggl[\sqrt{\frac{\hbar}{2 m \omega}}(\hat{a}_++\hat{a}_-)\Biggr]^2 \psi_n~dx\\
+		&= \frac{\hbar}{2 m \omega}\int_\mathbb{R}\psi_n^*(\hat{a}_+^2+\hat{a}_-\hat{a}_++\hat{a}_+\hat{a}_-+\hat{a}_-^2)\psi_n~dx\\
+		&= \frac{\hbar}{2 m \omega}\int_\mathbb{R}\psi_n^* \Biggl[A_{n+2}\psi_{n+2}+n\psi_n+(n+1)\psi_n+A_{n-2}\psi_{n-2}\Biggr]~dx\\
+		&= \frac{\hbar}{2 m \omega} \Biggl[  \cancelto{0}{A_{n+2}\int_\mathbb{R} \psi_n^*\psi_{n+2}~dx}+n\cancelto{1}{\int_\mathbb{R}\psi_n^*\psi_n~dx}+(n+1)\cancelto{1}{\int_\mathbb{R}\psi_n^*\psi_n~dx}+A_{n-2}\cancelto{0}{\int_\mathbb{R}\psi_n^*\psi_{n-2}~dx}  \Biggr]\\
+		&= \frac{\hbar}{2 m \omega}(2n +1)\\
+		\langle p \rangle &= \int_\mathbb{R} \psi_n^*\hat{p}\psi_n~dx = i\sqrt{\frac{\hbar m \omega}{2}}\int_\mathbb{R} \psi_n^* (\hat{a}_+-\hat{a}_-)\psi_n~dx\\
+		&= i\sqrt{\frac{\hbar m \omega}{2}}\int_\mathbb{R}\psi_n^*(A_{n+1}\psi_{n+1}-A_{n-1}\psi_{n-1})~dx = 0\\
+		\langle p^2 \rangle &= -\frac{\hbar m \omega}{2}\int_\mathbb{R}\psi_n^*(\hat{a}_+^2-\hat{a}_-\hat{a}_+-\hat{a}_+\hat{a}_-+\hat{a}_-^2)\psi_n~dx\\
+		&= -\frac{\hbar m \omega}{2}(-(n+1)-n)\\
+		&=\frac{\hbar m \omega}{2}(2n+1)\\
+		\sigma_x\sigma_p &= \frac{\hbar(2n+1)}{2}\\
+		\langle T \rangle &= \frac{\langle p^2 \rangle}{2m} = \frac{\hbar \omega}{4}(2n+1)
+	\end{flalign*}
+}
+
+\exercise{2.13}{
+	A particle in the harmonic oscillator potential starts out in state $$\Psi(x,0)=A\Biggl(3\psi_0(x)+4\psi_1(x)\Biggr)$$
+	\begin{itemize}
+	\item Find $A$.
+		\begin{flalign*}
+			1 &= \int_\mathbb{R} \Psi^* \Psi~dx = |A|^2 \int_\mathbb{R} 9\psi_0\psi_0^* + 12 \psi_0\psi_1^* + 12 \psi_1\psi_0^* + 16 \psi_1\psi_1^*~dx\\
+			&= A^2\Biggl[9\int_\mathbb{R} \psi_0\psi_0^*~dx+12\int_\mathbb{R} \psi_0\psi_1^*~dx+12\int_\mathbb{R} \psi_1\psi_0^*~dx+16\int_\mathbb{R} \psi_1\psi_1^*~dx\Biggr]\\
+			&= 25A^2 \implies A = \frac{1}{5}\\
+			\Psi(x,0) = \frac{3}{5}\psi_0 + \frac{4}{5}\psi_1
+		\end{flalign*}
+   	\item Construct $\Psi(x,t), |\Psi(x,t)|^2$. What would have happened if we specified $\psi_2$ instead of $\psi_1$?
+		\begin{flalign*}
+			\Psi(x,t)&= \frac{3}{5}\psi_0e^{-i\frac{E_0}{\hbar}t} + \frac{4}{5}\psi_1e^{-i\frac{E_1}{\hbar}t}\\
+			&= \frac{3}{5}\Biggl(\frac{m \omega}{\pi \hbar }\Biggr)^{1/4}e^{-\frac{m \omega}{2 \hbar}x^2}e^{i\frac{\omega t}{2}}+\frac{4}{5}\Biggl(\frac{m \omega}{\pi \hbar }\Biggr)^{1/4}xe^{-\frac{3m \omega}{2 \hbar}x^2}e^{-i\frac{3\omega t}{2}}\\
+			|\Psi(x,t)|^2 &= \Psi \Psi^* = \frac{1}{25}\sqrt{\frac{m \omega }{\pi \hbar}}\Biggl(\frac{32 m \omega x^2}{\hbar}+24\sqrt{\frac{2 m \omega}{\hbar}}x \cos(\omega t) + 9\Biggr)e^{-\frac{m \omega}{\hbar}x^2}\\
+		\end{flalign*}
+		The subsitution for the next higher energy state is left as an exercise.
+    \item Find $\langle x \rangle, \langle p \rangle$. Check that Ehrenfest's Theorem (Eq. 1.38) holds for this wave function.
+		\begin{flalign*}
+			\zeta \equiv \sqrt{\frac{m \omega}{\hbar}}x\\
+			\langle x \rangle &= \int_\mathbb{R} \Psi^*x\Psi ~dx =  \int_\mathbb{R} x|\Psi|^2~dx = \frac{24}{25}\sqrt{\frac{2}{\pi}}\cos(\omega t)\int_\mathbb{R}\frac{m \omega}{\hbar}x^2e^{-\frac{m \omega}{\hbar}x^2}~dx\\
+			&=\frac{48}{25}\sqrt{\frac{2 \hbar}{\pi m \omega}}\cos(\omega t )\cancelto{\frac{1}{2}\Gamma(3/2)}{\int_0^\infty \zeta^2 e^{-\zeta^2}~d\zeta}\\
+			&= \frac{12}{25}\sqrt{\frac{2 \hbar}{m \omega}}\cos(\omega t )\\
+			\langle p \rangle &= \int_\mathbb{R} \Psi^* -i\hbar \pdv{}{x} \Psi~dx = -i \hbar \int_\mathbb{R} \Psi^* \pdv{\Psi}{x}~dx\\
+			&= -\frac{12}{25}\sqrt{2 \hbar m \omega}\sin(\omega t)
+		\end{flalign*}
+		Confirmation left as an exercise; i.e., $\langle p \rangle = m \langle v \rangle = m \derivative{\langle x \rangle}{t}$; should also see that $\derivative{\langle p \rangle}{t} = \langle -\derivative{V}{x} \rangle$
+    \item If you measured the energy of this particle, what values might you get? What are their probabilities?
+		\begin{flalign*}
+			P_0 &= \Biggl[\frac{3}{5} \Biggr]^2 = 0.36\\
+			P_1 &= \Biggl[\frac{4}{5} \Biggr]^2 = 0.64\\
+			E_0 &= \frac{\hbar \omega}{2}\\
+			E_1 &= \frac{3 \hbar \omega}{2}
+		\end{flalign*}
+	\end{itemize}
+}
+\exercise{2.14}{
+	In the ground state of the harmonic oscillator, what is the probability (correct to 3 sig figs) of finding the particle outside the classically allowed region?
+	Hint: classically, the energy of the oscillator is $E = 0.5kA^2 = 0.5m\omega^2 A^2$ for amplitude $A$. Thus the region is for an energy $E$ extending from $-\sqrt{2E/m\omega^2}$ to $\sqrt{2E/m\omega^2}$. 
+	\begin{flalign*}
+		\zeta \equiv \sqrt{\frac{m \omega }{\hbar}x}\\
+		1 - \int_{-A}^A |\Psi_0(x,t)|^2~dx &= 1 - \int_{-A}^A \psi_0^2~dx = 1 - \sqrt{\frac{m \omega}{\pi \hbar}}\int_{-A}^A e^{-\frac{m \omega}{\hbar}x^2}~dx\\
+		&= 1-\frac{2}{\sqrt{\pi}}\int_0^{\sqrt{\frac{m \omega}{\hbar}}A}e^{-\zeta^2}~d\zeta\\
+		&= 1 - \erf\Biggl(\sqrt{\frac{m \omega}{\hbar}}A\Biggr)\\
+		E_0 &= \frac{\hbar \omega}{2} = \frac{m \omega^2 A^2}{2} \implies A = \sqrt{\frac{\hbar}{m \omega}}\\
+		\therefore 1 - P = 1 - \erf(1) \approx 0.157
+	\end{flalign*}
+}
+\exercise{2.15MOD}{
+	Use recusion formula (Eq. 2.85) to work out $H_5(\xi)$. Invoke the convention that the highest power of $\xi$ is $2^n$ to fix the overall constant. Then, compute the normalization constant.
+	As $n = 5$, we need to set $a_0 = 0$ to kill off even power terms and set $j = 5$ to stop at the proper odd term.
+	\begin{flalign*}
+		a_{j+2} &= \frac{-2(n-j)}{(j+1)(j+2)}a_j\\
+		a_{3} &= \frac{-2(5-1)}{(1+1)(1+2)}a_1 = -\frac{4}{3}a_1\\
+		a_{5} &= \frac{-2(5 -3)}{(3+1)(3+2)}a_3 = -\frac{a_3}{5} =  \frac{4}{15}a_1 = 2^5 \implies a_1 = 120\\
+		h_5(\xi) &= a_1(\xi - \frac{4}{3}\xi^3 + \frac{4}{15}\xi^5) = 32\xi^5-160\xi^3 +120\xi\\
+		\psi_5(\xi) &= h_5(\xi)e^{-\frac{\xi^2}{2}} = 120(\xi - \frac{4}{3}\xi^3 + \frac{4}{15}\xi^5)e^{-\frac{\xi^2}{2}}\\
+	\end{flalign*}
+	\pagebreak
+	Because of the association of the wavefunction with a probability density, it is necessary for the wavefunction to include a normalization constant. We take the moment generating function for the Hermite polynomial and exploit its orthgonality.
+	\begin{flalign*}
+		\psi_n(\xi)&= c_n H_n(\xi)e^{-\frac{\xi^2}{2}}\\
+		g(\xi, z) &= e^{-z^2+2z\xi} = \sum_{n=0}^\infty \frac{z^n}{n!}H_n(\xi)\\
+		(First~by~generating~functions)\\
+		I &= \int_\mathbb{R} g(\xi,t) e^{-\xi^2/2}g(\xi,s)^*e^{-\xi^2/2}~d\xi\\
+		&= e^{st} \int_\mathbb{R} e^{-u^2}~du\\
+		&= \sqrt{\pi}e^{2st}\\
+		\text(Now~with~Hermite~polynomials)\\
+		I &= \int_\mathbb{R} g(\xi,t) e^{-\xi^2/2}g(\xi,s)^*e^{-\xi^2/2}~d\xi\\
+		&= \int_\mathbb{R} \sum_{n=0}^\infty \frac{t^n}{n!}H_n(\xi) \sum_{m=0}^\infty \frac{s^m}{m!}H_m(\xi)\\
+		&= \sum_{n=0}^\infty \frac{t^n}{n!}\sum_{m=0}^\infty \frac{s^m}{m!}\underbrace{\int_\mathbb{R} H_n(\xi)H_m(\xi)e^{-\xi^2}~d\xi}_{A_{nm}}\\
+	\end{flalign*}
+	We know the expansion of the Euler constant is $x^n/n!$, so we equate both series as such
+	\begin{flalign*}
+		\sqrt{\pi} \sum_{n=0}^\infty \frac{(2st)^n}{n!} &= \sum_{n=0}^\infty \frac{t^n}{n!}\sum_{m=0}^\infty \frac{s^m}{m!}A_{nm}\\
+		\sqrt{\pi} (2s)^n &= \sum_{m=0}^\infty\frac{s^m}{m!}A_{nm} \implies n = m\\
+		\sqrt{\pi} (2)^n &= \frac{1}{n!}A_{nn} \implies \int_\mathbb{R} H_n(\xi)H_m(\xi)e^{-\xi^2}~d\xi = \delta_{nm}\sqrt{\pi}2^n n!\\
+		1=\int_\mathbb{R}|\Psi_n|^2~dx &= \int_\mathbb{R} \psi_n^2~dx= c_n^2 \int_\mathbb{R} H_n(\xi)^2e^{-\xi^2}~d\xi = \sqrt{\pi}2^n n!\\
+		c_n &= \sqrt{\frac{1}{\sqrt{\pi}2^n n!}}\\
+		\therefore \psi_n(\xi) &= \frac{\pi^{-1/4}}{\sqrt{n! 2^n}}H_n(\xi)e^{-\frac{\xi^2}{2}}\\
+	\end{flalign*}
+	We want a more explicit form in terms of position, so recall $\xi \equiv \sqrt{\frac{m \omega}{\hbar}}x$, which implies $dx = \sqrt{\frac{\hbar}{m \omega}}d\xi$. It follows that
+	\begin{flalign*}
+		\int_\mathbb{R} H_n(\xi)H_m(\xi)e^{-\xi^2}~d\xi &= \sqrt{\frac{\hbar}{m \omega}}\int_\mathbb{R} H_n(\sqrt{\frac{m \omega}{\hbar}}x)H_m(\sqrt{\frac{m \omega}{\hbar}}x)e^{-\frac{m \omega x^2}{2\hbar}}~dx = \delta_{nm}\sqrt{\pi}2^n n!\\
+		\implies c_n &= \Biggl(\frac{m \omega}{\pi \hbar}\Biggr)^{1/4}\frac{1}{\sqrt{2^n n!}}\\
+		\therefore \psi_n &= \Biggl(\frac{m \omega}{\pi \hbar}\Biggr)^{1/4}\frac{1}{\sqrt{2^n n!}}H_n(\sqrt{\frac{m \omega}{\hbar}}x)e^{-\frac{m \omega x^2}{2\hbar}}
+	\end{flalign*}
+}
