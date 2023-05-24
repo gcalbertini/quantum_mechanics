@@ -536,3 +536,65 @@
 			\end{flalign*}
 	\end{itemize}
 }
+
+\exercise{2.17}{
+	Show that $Ae^{ikx}+Be^{-ikx}$ and $C\cos(kx)+D\sin(kx)$ are equivalent ways of writing the same function of $x$, and determine the constants in terms of one another. In quantum mechanics, when $V=0$, the exponentials represent traveling waves, and are most convenient in discussing free particles, whereas sines and cosines correspond to traveling waves, which arise naturally in the case of the infinite square well.
+	\begin{flalign*}
+		Ae^{ikx}+Be^{-ikx} &= (A+B)\cos(kx)+i(A-B)\sin(kx)\\
+		C &= A+B \iff A = \frac{1}{2}(C-iD)\\
+		D &=i(A-B) \iff B = \frac{1}{2}(C+iD)\\
+	\end{flalign*}
+}
+
+\exercise{2.18}{
+	Find the probability current $J$ for the free particle wave function (using Eq 2.95). Which direction does the probability flow?
+	\begin{flalign*}
+		J(x,t) &= \frac{i \hbar}{2m}\Biggl(\Psi\pdv{\Psi^*}{x}-\Psi^*\pdv{\Psi}{x}\Biggr)\\
+		&= \frac{\hbar k |A|^2}{m}
+	\end{flalign*}
+	As $k$ is positive, probability is flowing past point $x$ in the positive direction.
+}
+
+\exercise{2.19}{
+	This problem is designed to guide you through the ``proof'' of Plancherel's theorem, by starting with the theory of ordinary Fourier series on a finite interval, and allowing it to then expand to infinity.
+	\begin{itemize}
+		\item Dirichlet's theorem say that any suitable function $f(x)$ on the interval $[-a,a]$ can be expanded to a Fourier series: $$f(x)=\sum_{n=0}^\infty \Biggl[a_n \sin(\frac{n \pi x}{a})+b_n \cos(\frac{n \pi x}{a})\Biggr]$$ Show this can be written as $$f(x)=\sum_{n=-\infty}^{\infty}c_n e^{-in\pi x/a}$$ What is $c_n$ in terms of $a_n$ and $b_n$?
+			\begin{flalign*}
+				f(x)&=b_0+\sum_{n=1}^\infty \Biggl[a_n \sin(\frac{n \pi x}{a})+b_n \cos(\frac{n \pi x}{a})\Biggr]\\
+				\int_{-a}^a f(x)~dx &= \int_{-a}^a b_0 + \sum_{n=1}^\infty \Biggl[a_n \sin(\frac{n \pi x}{a})+b_n \cos(\frac{n \pi x}{a})\Biggr]~dx = 2ab_0 \implies b_0 = \frac{1}{2a} \int_{-a}^a f(x)~dx\\
+				f(x) \cos(\frac{m \pi x}{a}) &= b_0 \cos(\frac{m \pi x}{a})+\sum_{n=1}^{\infty}a_n\sin(\frac{n \pi x}{a})\cos(\frac{m \pi x}{a})+\sum_{n=1}^\infty b_n \cos(\frac{n \pi x}{a})\cos(\frac{m \pi x}{a})  \\
+				&\implies \int_{-a}^a f(x)\cos(\frac{n \pi x}{a})~dx = ab_n \implies b_n = \frac{1}{a}\int_{-a}^a f(x)\cos(\frac{n \pi x }{a})~dx\\
+				f(x) \sin(\frac{m \pi x}{a}) &= b_0 \sin(\frac{m \pi x}{a})+\sum_{n=1}^{\infty}a_n\sin(\frac{n \pi x}{a})\sin(\frac{m \pi x}{a})+\sum_{n=1}^\infty b_n \cos(\frac{n \pi x}{a})\sin(\frac{m \pi x}{a})  \\
+				&\implies \int_{-a}^a f(x)\sin(\frac{n \pi x}{a})~dx = aa_n \implies a_n = \frac{1}{a}\int_{-a}^a f(x)\sin(\frac{n \pi x }{a})~dx\\
+			\end{flalign*}
+			We now use Euler's forula to express sinusoidal terms in terms of exponentials. We skip to the good part:
+			\begin{flalign*}
+				f(x) &= b_0 + \sum_{n=1}^\infty \frac{b_n-ia_n}{2}e^{i n \pi x /a}+ \sum_{n=1}^{\infty} \frac{b_n + ia_n}{2}e^{- i n \pi x/a}\\
+				c_0 &\equiv b_0\\
+				c_n &= \frac{b_n-ia_n}{2},~n \in \mathbb{Z}_1^+\\
+				c_{-n} &= \frac{b_{-n}+ia_{-n}}{2},~n \in \mathbb{Z}_1^-\\
+				&\implies f(x) = \sum_{n=-\infty}^\infty c_ne^{i n \pi x/a}
+			\end{flalign*}
+		\item Show, by modification of Fourier's trick, that $$c_n = \frac{1}{2a}\int_{-a}^{a} c_ne^{i n \pi x/a}~dx$$
+			\begin{flalign*}
+				f(x)e^{-i m \pi x /a} &= \sum_{n=-\infty}^\infty c_ne^{i n \pi x/a}e^{- i m \pi x /a}\\
+				\int_{-a}^a f(x)e^{-i m \pi x /a}~dx &= \int_{-a}^a \sum_{n=-\infty}^\infty c_ne^{i n \pi x/a}e^{- i m \pi x/a}~dx =\sum_{n=-\infty}^\infty c_n \underbrace{ \int_{-a}^a e^{i(n-m)x/a}~dx}_{2a\delta_{nm}}\\
+				\therefore  \int_{-a}^{a} f(x)e^{-i n \pi x /a}~dx = 2ac_n &\implies c_n = \frac{1}{2a} \int_{-a}^a e^{-i n \pi x /a}~dx~~~(n = m)
+			\end{flalign*}
+		\item Eliminate $n$ and $c_n$ in favor of new variables $k = n \pi /a$ and $F(k) = \sqrt{2 / \pi} a c_n$. Show that $$f(x) = \frac{1}{\sqrt{2 \pi}}\sum_{n=-\infty}^\infty F(k) e^{ikx}\Delta k;~~F(k) = \frac{1}{\sqrt{2 \pi}}\int_{-a}^a f(x)e^{-ikx}~dx,$$ where $\Delta k$ is the increment in $k$ from one $n$ to the next.
+			\begin{flalign*}
+				c_n &= \frac{1}{a}\sqrt{\frac{\pi}{2}}F(k) = \frac{1}{2a}\int_{-a}^a f(x)e^{-i n \pi x/a}~dx \implies F(k) = \frac{1}{\sqrt{2 \pi}}\int_{-a}^a f(x)e^{-ikx}~dx\\
+				\Delta k &= k_{n+1}-k_{n} = \frac{\pi}{a}\\
+				f(x) &= \sum_{n=-\infty}^\infty c_ne^{i n \pi x /a}= \sum_{n=-\infty}^\infty \Biggl(\frac{1}{2a} \int_{-a}^a f(x)e^{-i n \pi x /a}~dx \Biggr) e^{i n \pi x /a}\\
+				&= \sum_{k = -\infty}^\infty \Biggl(\frac{1}{2a} \int_{-a}^a f(x)e^{-i kx}~dx\Biggr)e^{ikx}\\
+				&= \frac{\pi}{a\sqrt{2 \pi}}\sum_{k = -\infty}^\infty \Biggl(\frac{1}{\sqrt{2 \pi}}\int_{-a}^{a} f(x)e^{-ikx}~dx\Biggr)e^{ikx}\\
+				&= \frac{1}{\sqrt{2 \pi}}\sum_{n=-\infty}^\infty F(k)e^{ikx}\Delta k~~(limits:~n~and~k~both~directly~proportional)
+			\end{flalign*}
+		\item Take the limit as $a \rightarrow \infty$ to obtain Plancherel's Theorem. In view of quite different origins, it is surprising that two formulas have such similar structure in this limit.\\\\
+			With this limit, $k$ becomes a continuos variable.
+			\begin{flalign*}
+				\lim_{a\to\infty} f(x) &= \frac{1}{\sqrt{2 \pi}}\int_{k=-\infty}^\infty F(k)e^{ikx}~dk\\
+				\lim_{a\to\infty} F(x) &= \frac{1}{\sqrt{2 \pi}}\int_{-\infty}^\infty f(x)e^{-ikx}~dx
+			\end{flalign*}
+	\end{itemize}
+}
